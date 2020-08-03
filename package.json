@@ -1,0 +1,30 @@
+{
+  "name": "songbird",
+  "version": "1.0.0",
+  "description": "Rolling Scopes Songbird test-app",
+  "main": "./src/index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yerzhan Utelbayev",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-react-constant-elements": "^7.10.4",
+    "@babel/plugin-transform-react-inline-elements": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
