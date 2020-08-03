@@ -2,11 +2,17 @@
   "name": "songbird",
   "version": "1.0.0",
   "description": "Rolling Scopes Songbird test-app",
-  "main": "./src/index.jsx",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YerzhanUtelbayev/songbird.git"
   },
-  "author": "Yerzhan Utelbayev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development"
+  },
+  "author": "Yerzhan Utelbayev <yerzhan.utelbayev@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.11.0",
@@ -28,7 +34,8 @@
     "terser-webpack-plugin": "^3.0.8",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "react": "^16.13.1",
