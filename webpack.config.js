@@ -4,16 +4,16 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = function (_env, argv) {
   const isProduction = argv.mode === 'production';
   const isDevelopment = !isProduction;
 
   return {
-    devTool: isDevelopment && 'cheap-module-source-map',
-    context: path.resolve(__dirname, 'src'),
+    devtool: isDevelopment && 'cheap-module-source-map',
     entry: {
-      main: './src/index.jsx',
+      main: './src/index.tsx',
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -23,10 +23,10 @@ module.exports = function (_env, argv) {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: babel - loader,
+            loader: 'babel-loader',
             options: {
               cacheDirectory: true,
               cacheCompression: false,
@@ -58,7 +58,7 @@ module.exports = function (_env, argv) {
       ],
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     plugins: [
       isProduction &&
@@ -75,6 +75,9 @@ module.exports = function (_env, argv) {
         'process.env.NODE_ENV': JSON.stringify(
           isProduction ? 'production' : 'development'
         ),
+      }),
+      new ForkTsCheckerWebpackPlugin({
+        async: false,
       }),
     ].filter(Boolean),
     optimization: {
@@ -111,10 +114,10 @@ module.exports = function (_env, argv) {
               )[1];
               return `${cacheGroupKey}.${packageName.replace('@', '')}`;
             },
-            common: {
-              minChunks: 2,
-              priority: -10,
-            },
+          },
+          common: {
+            minChunks: 2,
+            priority: -10,
           },
         },
       },
