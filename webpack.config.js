@@ -17,7 +17,7 @@ module.exports = function getConfig(_env, argv) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'assets/js/[name].[contenthash:8].js',
+      filename: 'assets/js/[name].[hash:8].js',
       publicPath: '/',
     },
     module: {
@@ -129,6 +129,7 @@ module.exports = function getConfig(_env, argv) {
       open: true,
       overlay: true,
       port: 8080,
+      hot: true,
     },
   };
 };
