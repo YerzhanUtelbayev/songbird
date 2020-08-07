@@ -6,7 +6,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-module.exports = function (_env, argv) {
+module.exports = function getConfig(_env, argv) {
   const isProduction = argv.mode === 'production';
   const isDevelopment = !isProduction;
 
@@ -61,8 +61,8 @@ module.exports = function (_env, argv) {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     plugins: [
-      isProduction &&
-        new MiniCssExtractPlugin({
+      isProduction
+        && new MiniCssExtractPlugin({
           filename: 'assets/css/[name].[contenthash:8].css',
           chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
         }),
@@ -73,7 +73,7 @@ module.exports = function (_env, argv) {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(
-          isProduction ? 'production' : 'development'
+          isProduction ? 'production' : 'development',
         ),
       }),
       new ForkTsCheckerWebpackPlugin({
@@ -110,7 +110,7 @@ module.exports = function (_env, argv) {
             test: /[\\/]node_modules[\\/]/,
             name(module, chunks, cacheGroupKey) {
               const packageName = module.context.match(
-                /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
               )[1];
               return `${cacheGroupKey}.${packageName.replace('@', '')}`;
             },
