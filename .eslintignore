@@ -4,3 +4,6 @@ public/
 /.git
 /.vscode
 /.idea
+
+.eslintrc.js
+webpack.config.js

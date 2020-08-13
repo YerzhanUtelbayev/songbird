@@ -12,8 +12,8 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
     "prettier-format": "prettier --config .prettierrc src/**/*{ts,tsx,js,jsx,json,css} --write",
-    "lint:eslint": "eslint . --ext .ts,.js,.tsx,.jsx",
-    "lint:eslint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix"
+    "lint:eslint": "eslint --ext .ts,.js,.tsx,.jsx src/",
+    "lint:eslint:fix": "eslint --ext .ts,.js,.tsx,.jsx --fix src/"
   },
   "husky": {
     "hooks": {
