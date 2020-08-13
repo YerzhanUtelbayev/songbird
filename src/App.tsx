@@ -1,7 +1,11 @@
 import React, { FunctionComponent } from 'react';
+import Layout from './components/Layout/Layout';
+import Main from './containers/Main/Main';
 
-const App: FunctionComponent = (): JSX.Element => (
-  <div>App containers will be here</div>
+const App: FunctionComponent = () => (
+  <Layout>
+    <Main />
+  </Layout>
 );
 
 export default App;
