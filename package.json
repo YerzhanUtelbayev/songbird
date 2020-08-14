@@ -43,7 +43,6 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/reactstrap": "^8.5.0",
-    "@types/redux": "^3.6.0",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
     "babel-loader": "^8.1.0",
@@ -77,6 +76,9 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "reactstrap": "^8.5.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "thunk": "0.0.1"
   }
 }
