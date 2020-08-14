@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { NavbarText } from 'reactstrap';
 import { RootState } from '../../../store/configureStore';
 
-interface Props extends PropsFromRedux {
-  score: number;
-}
-
-const ScoreIndicator = ({ score }: Props) => (
+const ScoreIndicator: FunctionComponent<PropsFromRedux> = ({ score }) => (
   <NavbarText>
     {'Score: '}
     {score}

@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Nav, NavItem, NavbarText } from 'reactstrap';
 
 import { RootState } from '../../../store/configureStore';
 import stageTitles from '../../../utilities/stageTitles';
 
-interface Props extends PropsFromRedux {
-  activeStage: number;
-}
-
-const StagesBar = ({ activeStage }: Props) => {
+const StagesBar: FunctionComponent<PropsFromRedux> = ({ activeStage }) => {
   const stages = stageTitles;
 
   return (
