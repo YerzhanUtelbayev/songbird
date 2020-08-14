@@ -1,0 +1,10 @@
+.QuestionBox-imageBox {
+  max-width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.QuestionBox-image {
+  width: 100%;
+  height: auto;
+}

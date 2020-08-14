@@ -5,6 +5,7 @@ import { Dispatch } from 'redux';
 import { RootState } from '../../store/configureStore';
 import { IBirdData } from '../../store/reducers/game';
 import { setCorrectAnswerNumber } from '../../store/actions/gameActions';
+import QuestionBox from '../../components/QuestionBox/QuestionBox';
 
 const Main: FunctionComponent<PropsFromRedux> = ({
   birdsList,
@@ -36,10 +37,15 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   }, [correctAnswer, birdsList, activeStage]);
 
   return (
-    <div>
-      Main page content will be here
-      {currentBird && currentBird.name}
-    </div>
+    <>
+      {currentBird && (
+        <QuestionBox
+          image={currentBird.image}
+          title={currentBird.name}
+          audio={currentBird.audio}
+        />
+      )}
+    </>
   );
 };
 
