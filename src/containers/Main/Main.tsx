@@ -28,7 +28,8 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   useEffect(() => {
     const currentStageData: IBirdData[] = [...birdsList[activeStage]];
     if (correctAnswer) {
-      const correctAnswerData = { ...currentStageData[correctAnswer] };
+      const index = correctAnswer - 1;
+      const correctAnswerData = { ...currentStageData[index] };
       setBird(correctAnswerData);
     }
   }, [birdsList, activeStage, correctAnswer]);
