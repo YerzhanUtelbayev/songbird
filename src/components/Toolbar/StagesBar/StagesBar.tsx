@@ -17,7 +17,7 @@ const StagesBar = ({ activeStage }: Props) => {
       {stages.map((stage, index) => {
         const stylesClass = index + 1 === activeStage ? 'active' : '';
         return (
-          <NavItem className={stylesClass}>
+          <NavItem key={stage} className={stylesClass}>
             <NavbarText className="text-white">{stage}</NavbarText>
           </NavItem>
         );

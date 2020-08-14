@@ -23,7 +23,7 @@
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
       "npm run prettier-format",
-      "npm run lint:eslint"
+      "npm run lint:eslint:fix"
     ]
   },
   "author": "Yerzhan Utelbayev <yerzhan.utelbayev@gmail.com>",
