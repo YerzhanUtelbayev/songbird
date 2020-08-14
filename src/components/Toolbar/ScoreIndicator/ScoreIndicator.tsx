@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { NavbarText } from 'reactstrap';
-import { RootState } from '../../store/configureStore';
+import { RootState } from '../../../store/configureStore';
 
 interface Props extends PropsFromRedux {
   score: number;
