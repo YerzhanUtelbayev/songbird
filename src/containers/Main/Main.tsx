@@ -21,18 +21,19 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   };
 
   useEffect(() => {
-    const randomInt = getRandomIntInclusive(1, 6);
+    const currentStageData: IBirdData[] = [...birdsList[activeStage]];
+    const randomInt = getRandomIntInclusive(1, currentStageData.length);
     onSetCorrectAnswer(randomInt);
-  }, [activeStage, onSetCorrectAnswer]);
+  }, [activeStage, onSetCorrectAnswer, birdsList]);
 
   useEffect(() => {
-    const currentStageData: IBirdData[] = [...birdsList[activeStage]];
     if (correctAnswer) {
+      const currentStageData: IBirdData[] = [...birdsList[activeStage]];
       const index = correctAnswer - 1;
       const correctAnswerData = { ...currentStageData[index] };
       setBird(correctAnswerData);
     }
-  }, [birdsList, activeStage, correctAnswer]);
+  }, [correctAnswer, birdsList, activeStage]);
 
   return (
     <div>
