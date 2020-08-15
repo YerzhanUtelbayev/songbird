@@ -7,7 +7,7 @@ import {
   HANDLE_INCORRECT_ANSWER,
 } from '../types/actionTypes';
 import { GameActionTypes } from '../actions/gameActions';
-import MAX_STAGE_SCORE from '../../utilities/constants';
+import { MAX_STAGE_SCORE } from '../../utilities/constants';
 
 export interface IBirdData {
   id: number;
