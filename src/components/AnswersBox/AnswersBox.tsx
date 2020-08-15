@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+
 import { IBirdData } from '../../store/reducers/game';
 
 interface Props {
@@ -6,11 +8,11 @@ interface Props {
 }
 
 const AnswersBox: FunctionComponent<Props> = ({ stageBirdsList }) => (
-  <>
+  <ListGroup>
     {stageBirdsList && Array.isArray(stageBirdsList)
-      ? stageBirdsList.map(({ name }, index) => <p>{name}</p>)
+      ? stageBirdsList.map(({ name }) => <ListGroupItem>{name}</ListGroupItem>)
       : null}
-  </>
+  </ListGroup>
 );
 
 export default AnswersBox;
