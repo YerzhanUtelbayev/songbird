@@ -26,6 +26,7 @@ export interface IGameSate {
   score: number;
   correctAnswerId: number | null;
   stageAttempts: number;
+  hasAnsweredCorrectly: boolean;
 }
 
 const initialState: IGameSate = {
@@ -34,6 +35,7 @@ const initialState: IGameSate = {
   score: 0,
   correctAnswerId: null,
   stageAttempts: 0,
+  hasAnsweredCorrectly: false,
 };
 
 export default (state = initialState, action: GameActionTypes): IGameSate => {
@@ -44,10 +46,19 @@ export default (state = initialState, action: GameActionTypes): IGameSate => {
       if (state.activeStage === stageTitles.length) {
         return state;
       }
-      return { ...state, activeStage: state.activeStage + 1, stageAttempts: 0 };
+      return {
+        ...state,
+        activeStage: state.activeStage + 1,
+        stageAttempts: 0,
+        hasAnsweredCorrectly: false,
+      };
 
     case HANDLE_CORRECT_ANSWER:
-      return { ...state, score: MAX_STAGE_SCORE - state.stageAttempts };
+      return {
+        ...state,
+        score: MAX_STAGE_SCORE - state.stageAttempts,
+        hasAnsweredCorrectly: true,
+      };
     case HANDLE_INCORRECT_ANSWER:
       return { ...state, stageAttempts: state.stageAttempts + 1 };
     default:

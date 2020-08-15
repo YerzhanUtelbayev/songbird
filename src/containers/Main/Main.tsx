@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 
 import { RootState } from '../../store/configureStore';
 import { IBirdData } from '../../store/reducers/game';
-import { setCorrectAnswerNumber } from '../../store/actions/gameActions';
+import { setCorrectAnswerNumber, proceedToNextStage } from '../../store/actions/gameActions';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import AnswersBox from '../../components/AnswersBox/AnswersBox';
 import BirdInfo from '../../components/BirdInfo/BirdInfo';
@@ -15,10 +15,10 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   activeStage,
   correctAnswerId,
   onSetCorrectAnswer,
+  onProceedToNextStage,
+  hasAnsweredCorrectly,
 }) => {
-  const [questionedBird, setQuestionedBird] = useState<IBirdData | undefined>(
-    undefined,
-  );
+  const [questionedBird, setQuestionedBird] = useState<IBirdData | undefined>(undefined);
   const [shownBirdIndex, setBirdIndex] = useState<number | null>(null);
 
   const getRandomIntInclusive = (min: number, max: number): number => {
@@ -41,9 +41,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   useEffect(() => {
     if (correctAnswerId) {
       const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
-      const correctAnswerData = currentStageData.find(
-        ({ id }) => id === correctAnswerId,
-      );
+      const correctAnswerData = currentStageData.find(({ id }) => id === correctAnswerId);
       setQuestionedBird(correctAnswerData);
     }
   }, [correctAnswerId, birdsList, activeStage]);
@@ -59,10 +57,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
       )}
       <Row>
         <Col sm={12} md={6}>
-          <AnswersBox
-            stageBirdsList={birdsList[activeStage - 1]}
-            showBirdInfo={showBirdInfo}
-          />
+          <AnswersBox stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
         </Col>
         <Col sm={12} md={6}>
           {shownBirdIndex || shownBirdIndex === 0 ? (
@@ -75,6 +70,16 @@ const Main: FunctionComponent<PropsFromRedux> = ({
           )}
         </Col>
       </Row>
+      <div>
+        <Button
+          color="success"
+          block
+          onClick={onProceedToNextStage}
+          disabled={!hasAnsweredCorrectly}
+        >
+          Next Level
+        </Button>
+      </div>
     </>
   );
 };
@@ -83,10 +88,12 @@ const mapStateToProps = (state: RootState) => ({
   birdsList: state.game.birdsList,
   activeStage: state.game.activeStage,
   correctAnswerId: state.game.correctAnswerId,
+  hasAnsweredCorrectly: state.game.hasAnsweredCorrectly,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onSetCorrectAnswer: (answerNumber: number) => dispatch(setCorrectAnswerNumber(answerNumber)),
+  onProceedToNextStage: () => dispatch(proceedToNextStage()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
