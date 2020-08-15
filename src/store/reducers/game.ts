@@ -24,7 +24,7 @@ export interface IGameSate {
   birdsList: IBirdsList;
   activeStage: number;
   score: number;
-  correctAnswer: number | null;
+  correctAnswerId: number | null;
   stageAttempts: number;
 }
 
@@ -32,14 +32,14 @@ const initialState: IGameSate = {
   birdsList: mockData as IBirdsList,
   activeStage: 1,
   score: 0,
-  correctAnswer: null,
+  correctAnswerId: null,
   stageAttempts: 0,
 };
 
 export default (state = initialState, action: GameActionTypes): IGameSate => {
   switch (action.type) {
     case SET_CORRECT_ANSWER_NUMBER:
-      return { ...state, correctAnswer: action.payload };
+      return { ...state, correctAnswerId: action.payload };
     case PROCEED_TO_NEXT_STAGE:
       if (state.activeStage === stageTitles.length) {
         return state;

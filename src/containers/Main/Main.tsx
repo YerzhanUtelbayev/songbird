@@ -12,7 +12,7 @@ import AnswersBox from '../../components/AnswersBox/AnswersBox';
 const Main: FunctionComponent<PropsFromRedux> = ({
   birdsList,
   activeStage,
-  correctAnswer,
+  correctAnswerId,
   onSetCorrectAnswer,
 }) => {
   const [currentBird, setBird] = useState<IBirdData | undefined>(undefined);
@@ -26,17 +26,19 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   useEffect(() => {
     const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
     const randomInt = getRandomIntInclusive(1, currentStageData.length);
-    onSetCorrectAnswer(randomInt);
+    const randomBirdId = currentStageData[randomInt - 1].id;
+    onSetCorrectAnswer(randomBirdId);
   }, [activeStage, onSetCorrectAnswer, birdsList]);
 
   useEffect(() => {
-    if (correctAnswer) {
+    if (correctAnswerId) {
       const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
-      const index = correctAnswer - 1;
-      const correctAnswerData = { ...currentStageData[index] };
+      const correctAnswerData = currentStageData.find(
+        ({ id }) => id === correctAnswerId,
+      );
       setBird(correctAnswerData);
     }
-  }, [correctAnswer, birdsList, activeStage]);
+  }, [correctAnswerId, birdsList, activeStage]);
 
   return (
     <>
@@ -59,7 +61,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
 const mapStateToProps = (state: RootState) => ({
   birdsList: state.game.birdsList,
   activeStage: state.game.activeStage,
-  correctAnswer: state.game.correctAnswer,
+  correctAnswerId: state.game.correctAnswerId,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
