@@ -1,9 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import {
-  Card, CardImg, CardBody, CardTitle,
-} from 'reactstrap';
+import { Card, CardBody, CardTitle } from 'reactstrap';
 
-import './QuestionBox.css';
+import ImageBox from '../UI/ImageBox/ImageBox';
 
 interface Props {
   image: string;
@@ -13,9 +11,7 @@ interface Props {
 
 const QuestionBox: FunctionComponent<Props> = ({ image, audio, title }) => (
   <Card className="d-flex flex-row">
-    <div className="QuestionBox-imageBox">
-      <CardImg src={image} alt={title} className="QuestionBox-image" />
-    </div>
+    <ImageBox image={image} title={title} />
     <CardBody>
       <CardTitle>{title}</CardTitle>
     </CardBody>

@@ -5,12 +5,20 @@ import { IBirdData } from '../../store/reducers/game';
 
 interface Props {
   stageBirdsList: IBirdData[];
+  showBirdInfo: (index: number) => void;
 }
 
-const AnswersBox: FunctionComponent<Props> = ({ stageBirdsList }) => (
+const AnswersBox: FunctionComponent<Props> = ({
+  stageBirdsList,
+  showBirdInfo,
+}) => (
   <ListGroup>
     {stageBirdsList && Array.isArray(stageBirdsList)
-      ? stageBirdsList.map(({ name }) => <ListGroupItem>{name}</ListGroupItem>)
+      ? stageBirdsList.map(({ id, name }, index) => (
+        <ListGroupItem key={id} onClick={() => showBirdInfo(index)}>
+          {name}
+        </ListGroupItem>
+      ))
       : null}
   </ListGroup>
 );

@@ -8,6 +8,7 @@ import { IBirdData } from '../../store/reducers/game';
 import { setCorrectAnswerNumber } from '../../store/actions/gameActions';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import AnswersBox from '../../components/AnswersBox/AnswersBox';
+import BirdInfo from '../../components/BirdInfo/BirdInfo';
 
 const Main: FunctionComponent<PropsFromRedux> = ({
   birdsList,
@@ -15,12 +16,19 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   correctAnswerId,
   onSetCorrectAnswer,
 }) => {
-  const [currentBird, setBird] = useState<IBirdData | undefined>(undefined);
+  const [questionedBird, setQuestionedBird] = useState<IBirdData | undefined>(
+    undefined,
+  );
+  const [shownBirdIndex, setBirdIndex] = useState<number | null>(null);
 
   const getRandomIntInclusive = (min: number, max: number): number => {
     const minInt = Math.ceil(min);
     const maxInt = Math.floor(max);
     return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
+  };
+
+  const showBirdInfo = (birdIndex: number) => {
+    setBirdIndex(birdIndex);
   };
 
   useEffect(() => {
@@ -36,22 +44,35 @@ const Main: FunctionComponent<PropsFromRedux> = ({
       const correctAnswerData = currentStageData.find(
         ({ id }) => id === correctAnswerId,
       );
-      setBird(correctAnswerData);
+      setQuestionedBird(correctAnswerData);
     }
   }, [correctAnswerId, birdsList, activeStage]);
 
   return (
     <>
-      {currentBird && (
+      {questionedBird && (
         <QuestionBox
-          image={currentBird.image}
-          title={currentBird.name}
-          audio={currentBird.audio}
+          image={questionedBird.image}
+          title={questionedBird.name}
+          audio={questionedBird.audio}
         />
       )}
       <Row>
         <Col sm={12} md={6}>
-          <AnswersBox stageBirdsList={birdsList[activeStage - 1]} />
+          <AnswersBox
+            stageBirdsList={birdsList[activeStage - 1]}
+            showBirdInfo={showBirdInfo}
+          />
+        </Col>
+        <Col sm={12} md={6}>
+          {shownBirdIndex || shownBirdIndex === 0 ? (
+            <BirdInfo birdData={birdsList[activeStage - 1][shownBirdIndex]} />
+          ) : (
+            <>
+              <p>Послушайте плеер</p>
+              <p>Выберите птицу из списка</p>
+            </>
+          )}
         </Col>
       </Row>
     </>
