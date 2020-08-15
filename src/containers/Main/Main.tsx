@@ -31,6 +31,11 @@ const Main: FunctionComponent<PropsFromRedux> = ({
     setBirdIndex(birdIndex);
   };
 
+  const handleProceedToNextLevel = () => {
+    setBirdIndex(null);
+    onProceedToNextStage();
+  };
+
   useEffect(() => {
     const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
     const randomInt = getRandomIntInclusive(1, currentStageData.length);
@@ -74,7 +79,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
         <Button
           color="success"
           block
-          onClick={onProceedToNextStage}
+          onClick={handleProceedToNextLevel}
           disabled={!hasAnsweredCorrectly}
         >
           Next Level
