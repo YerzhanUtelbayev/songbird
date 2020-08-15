@@ -1,6 +1,8 @@
 import {
   SET_CORRECT_ANSWER_NUMBER,
   PROCEED_TO_NEXT_STAGE,
+  HANDLE_CORRECT_ANSWER,
+  HANDLE_INCORRECT_ANSWER,
 } from '../types/actionTypes';
 
 interface SetCorrectAnswerNumberAction {
@@ -11,6 +13,20 @@ interface SetCorrectAnswerNumberAction {
 interface ProceedToNextStageAction {
   type: typeof PROCEED_TO_NEXT_STAGE;
 }
+
+interface HandleCorrectAnswer {
+  type: typeof HANDLE_CORRECT_ANSWER;
+}
+
+interface HandleIncorrectAnswer {
+  type: typeof HANDLE_INCORRECT_ANSWER;
+}
+
+export type GameActionTypes =
+  | SetCorrectAnswerNumberAction
+  | ProceedToNextStageAction
+  | HandleCorrectAnswer
+  | HandleIncorrectAnswer;
 
 export const setCorrectAnswerNumber = (
   answerNumber: number,
@@ -23,6 +39,10 @@ export const proceedToNextStage = (): GameActionTypes => ({
   type: PROCEED_TO_NEXT_STAGE,
 });
 
-export type GameActionTypes =
-  | SetCorrectAnswerNumberAction
-  | ProceedToNextStageAction;
+export const handleCorrectAnswer = (): HandleCorrectAnswer => ({
+  type: HANDLE_CORRECT_ANSWER,
+});
+
+export const handleIncorrectAnswer = (): HandleIncorrectAnswer => ({
+  type: HANDLE_INCORRECT_ANSWER,
+});
