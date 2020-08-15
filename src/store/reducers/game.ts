@@ -5,6 +5,7 @@ import {
   PROCEED_TO_NEXT_STAGE,
   HANDLE_CORRECT_ANSWER,
   HANDLE_INCORRECT_ANSWER,
+  RESTART_GAME,
 } from '../types/actionTypes';
 import { GameActionTypes } from '../actions/gameActions';
 import { MAX_STAGE_SCORE } from '../../utilities/constants';
@@ -63,6 +64,10 @@ export default (state = initialState, action: GameActionTypes): IGameSate => {
       };
     case HANDLE_INCORRECT_ANSWER:
       return { ...state, stageAttempts: state.stageAttempts + 1 };
+
+    case RESTART_GAME:
+      return { ...initialState };
+
     default:
       return state;
   }
