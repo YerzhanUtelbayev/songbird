@@ -58,7 +58,7 @@ export default (state = initialState, action: GameActionTypes): IGameSate => {
     case HANDLE_CORRECT_ANSWER:
       return {
         ...state,
-        score: MAX_STAGE_SCORE - state.stageAttempts,
+        score: state.score + (MAX_STAGE_SCORE - state.stageAttempts),
         hasAnsweredCorrectly: true,
       };
     case HANDLE_INCORRECT_ANSWER:
