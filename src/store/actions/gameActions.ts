@@ -28,9 +28,7 @@ export type GameActionTypes =
   | HandleCorrectAnswer
   | HandleIncorrectAnswer;
 
-export const setCorrectAnswerNumber = (
-  answerNumber: number,
-): GameActionTypes => ({
+export const setCorrectAnswerNumber = (answerNumber: number): GameActionTypes => ({
   type: SET_CORRECT_ANSWER_NUMBER,
   payload: answerNumber,
 });

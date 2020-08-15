@@ -27,6 +27,7 @@ export interface IGameSate {
   correctAnswerId: number | null;
   stageAttempts: number;
   hasAnsweredCorrectly: boolean;
+  isGameOver: boolean;
 }
 
 const initialState: IGameSate = {
@@ -36,6 +37,7 @@ const initialState: IGameSate = {
   correctAnswerId: null,
   stageAttempts: 0,
   hasAnsweredCorrectly: false,
+  isGameOver: false,
 };
 
 export default (state = initialState, action: GameActionTypes): IGameSate => {
@@ -44,7 +46,7 @@ export default (state = initialState, action: GameActionTypes): IGameSate => {
       return { ...state, correctAnswerId: action.payload };
     case PROCEED_TO_NEXT_STAGE:
       if (state.activeStage === stageTitles.length) {
-        return state;
+        return { ...state, isGameOver: true };
       }
       return {
         ...state,
