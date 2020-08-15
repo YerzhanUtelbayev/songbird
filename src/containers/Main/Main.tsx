@@ -1,11 +1,13 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
+import { Row, Col } from 'reactstrap';
 
 import { RootState } from '../../store/configureStore';
 import { IBirdData } from '../../store/reducers/game';
 import { setCorrectAnswerNumber } from '../../store/actions/gameActions';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
+import AnswersBox from '../../components/AnswersBox/AnswersBox';
 
 const Main: FunctionComponent<PropsFromRedux> = ({
   birdsList,
@@ -22,14 +24,14 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   };
 
   useEffect(() => {
-    const currentStageData: IBirdData[] = [...birdsList[activeStage]];
+    const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
     const randomInt = getRandomIntInclusive(1, currentStageData.length);
     onSetCorrectAnswer(randomInt);
   }, [activeStage, onSetCorrectAnswer, birdsList]);
 
   useEffect(() => {
     if (correctAnswer) {
-      const currentStageData: IBirdData[] = [...birdsList[activeStage]];
+      const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
       const index = correctAnswer - 1;
       const correctAnswerData = { ...currentStageData[index] };
       setBird(correctAnswerData);
@@ -45,6 +47,11 @@ const Main: FunctionComponent<PropsFromRedux> = ({
           audio={currentBird.audio}
         />
       )}
+      <Row>
+        <Col sm={12} md={6}>
+          <AnswersBox stageBirdsList={birdsList[activeStage - 1]} />
+        </Col>
+      </Row>
     </>
   );
 };
