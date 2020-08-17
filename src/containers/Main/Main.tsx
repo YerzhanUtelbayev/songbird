@@ -5,7 +5,7 @@ import { Row, Col, Button } from 'reactstrap';
 
 import { RootState } from '../../store/configureStore';
 import { IBirdData } from '../../store/reducers/game';
-import { setCorrectAnswerNumber, proceedToNextStage } from '../../store/actions/gameActions';
+import { setCorrectAnswerId, proceedToNextStage } from '../../store/actions/gameActions';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import AnswersBox from '../../components/AnswersBox/AnswersBox';
 import BirdInfo from '../../components/BirdInfo/BirdInfo';
@@ -97,7 +97,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onSetCorrectAnswer: (answerNumber: number) => dispatch(setCorrectAnswerNumber(answerNumber)),
+  onSetCorrectAnswer: (birdId: number) => dispatch(setCorrectAnswerId(birdId)),
   onProceedToNextStage: () => dispatch(proceedToNextStage()),
 });
 

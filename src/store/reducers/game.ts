@@ -1,7 +1,7 @@
 import mockData from '../../utilities/mockData.json';
 import stageTitles from '../../utilities/stageTitles';
 import {
-  SET_CORRECT_ANSWER_NUMBER,
+  SET_CORRECT_ANSWER_ID,
   PROCEED_TO_NEXT_STAGE,
   HANDLE_CORRECT_ANSWER,
   HANDLE_INCORRECT_ANSWER,
@@ -43,7 +43,7 @@ const initialState: IGameSate = {
 
 export default (state = initialState, action: GameActionTypes): IGameSate => {
   switch (action.type) {
-    case SET_CORRECT_ANSWER_NUMBER:
+    case SET_CORRECT_ANSWER_ID:
       return { ...state, correctAnswerId: action.payload };
     case PROCEED_TO_NEXT_STAGE:
       if (state.activeStage === stageTitles.length) {

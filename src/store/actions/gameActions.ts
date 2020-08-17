@@ -1,13 +1,13 @@
 import {
-  SET_CORRECT_ANSWER_NUMBER,
+  SET_CORRECT_ANSWER_ID,
   PROCEED_TO_NEXT_STAGE,
   HANDLE_CORRECT_ANSWER,
   HANDLE_INCORRECT_ANSWER,
   RESTART_GAME,
 } from '../types/actionTypes';
 
-interface SetCorrectAnswerNumberAction {
-  type: typeof SET_CORRECT_ANSWER_NUMBER;
+interface SetCorrectAnswerIdAction {
+  type: typeof SET_CORRECT_ANSWER_ID;
   payload: number;
 }
 
@@ -28,15 +28,15 @@ interface RestartGame {
 }
 
 export type GameActionTypes =
-  | SetCorrectAnswerNumberAction
+  | SetCorrectAnswerIdAction
   | ProceedToNextStageAction
   | HandleCorrectAnswer
   | HandleIncorrectAnswer
   | RestartGame;
 
-export const setCorrectAnswerNumber = (answerNumber: number): GameActionTypes => ({
-  type: SET_CORRECT_ANSWER_NUMBER,
-  payload: answerNumber,
+export const setCorrectAnswerId = (answerId: number): GameActionTypes => ({
+  type: SET_CORRECT_ANSWER_ID,
+  payload: answerId,
 });
 
 export const proceedToNextStage = (): GameActionTypes => ({
