@@ -1,0 +1,8 @@
+.Player-controls {
+  flex-grow: 1;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
