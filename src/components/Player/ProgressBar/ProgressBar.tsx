@@ -14,6 +14,7 @@ interface Props {
 
 const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate }) => {
   const [curPercentage, setPercentage] = useState<number>(0);
+  const [isDragged, setDragged] = useState<boolean>(false);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const getFormattedDuration = (durationValue: number): string => {
@@ -38,6 +39,7 @@ const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate
   };
 
   const updateTimeOnMove = (event: MouseEvent) => {
+    setDragged(true);
     onTimeUpdate(getClickedTime(event.pageX));
   };
 
@@ -50,15 +52,25 @@ const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate
       bar.addEventListener('mousemove', updateTimeOnMove);
 
       document.addEventListener('mouseup', () => {
+        setDragged(false);
         bar.removeEventListener('mousemove', updateTimeOnMove);
       });
     }
   };
 
+  const roundTo = (value: number, digits = 0): number => {
+    const p = 10 ** digits;
+    const e = 0.5 * Number.EPSILON * value;
+    return Math.round((value + e) * p) / p;
+  };
+
   useEffect(() => {
     const result = (curTime / duration) * 100;
-    setPercentage(result);
-  }, [curTime, duration]);
+    const percentage = roundTo(result, 2);
+    if (percentage !== curPercentage) {
+      setPercentage(percentage);
+    }
+  }, [curTime, duration, curPercentage]);
 
   return (
     <div className="ProgressBar">
@@ -67,11 +79,14 @@ const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate
         ref={progressBarRef}
         className="ProgressBar-progress"
         style={{
-          background: `linear-gradient(to right, #0EB08C ${curPercentage}%, grey 0)`,
+          background: `linear-gradient(to right, #0EB08C ${curPercentage - 1}%, grey 0)`,
         }}
         onMouseDown={handleTimeDrag}
       >
-        <span className="ProgressBar-progress-knob" style={{ left: `${curPercentage - 2}%` }} />
+        <span
+          className="ProgressBar-progress-knob"
+          style={{ left: `${curPercentage}%`, transition: isDragged ? 'none' : '.2s linear' }}
+        />
       </div>
       <span className="ProgressBar-time">{getFormattedDuration(duration)}</span>
     </div>

@@ -11,6 +11,7 @@
 }
 
 .ProgressBar-progress {
+  position: relative;
   flex: 1;
   border-radius: 5px;
   margin: 0 20px;
@@ -21,10 +22,12 @@
 }
 
 .ProgressBar-progress-knob {
-  position: relative;
+  position: absolute;
+  top: 0;
   height: 16px;
   width: 16px;
   border: 1.5px solid grey;
   border-radius: 50%;
   background-color: grey;
+  transform: translate(-50%, -20%);
 }
