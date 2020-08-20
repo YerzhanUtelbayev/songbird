@@ -1,0 +1,30 @@
+.ProgressBar {
+  user-select: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ProgressBar-time {
+  color: black;
+  font-size: 16px;
+}
+
+.ProgressBar-progress {
+  flex: 1;
+  border-radius: 5px;
+  margin: 0 20px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ProgressBar-progress-knob {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  border: 1.5px solid grey;
+  border-radius: 50%;
+  background-color: grey;
+}
