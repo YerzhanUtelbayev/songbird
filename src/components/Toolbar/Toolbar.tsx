@@ -6,7 +6,7 @@ import StagesBar from './StagesBar/StagesBar';
 const Toolbar: FunctionComponent = () => (
   <header>
     <Container>
-      <Navbar color="dark" dark>
+      <Navbar dark>
         <NavbarBrand className="mr-auto text-white">
           Song
           <span className="text-success">bird</span>

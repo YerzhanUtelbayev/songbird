@@ -34,7 +34,7 @@ const AnswersBox: FunctionComponent<Props> = ({
   };
 
   return (
-    <ListGroup>
+    <ListGroup className="AnswersBox-container">
       {stageBirdsList && Array.isArray(stageBirdsList)
         ? stageBirdsList.map(({ id, name }, index) => (
           <ListGroupItem

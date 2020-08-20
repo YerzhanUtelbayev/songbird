@@ -1,3 +1,10 @@
+.AnswersBox-container {
+  background-color: #303030;
+  border-radius: 0.25rem;
+}
+.AnswersBox-listItem {
+  background-color: #303030;
+}
 .AnswersBox-listItem:hover {
   cursor: pointer;
 }

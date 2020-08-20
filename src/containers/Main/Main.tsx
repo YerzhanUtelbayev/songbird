@@ -60,7 +60,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
           audio={questionedBird.audio}
         />
       )}
-      <Row>
+      <Row className="my-5">
         <Col sm={12} md={6}>
           <AnswersBox stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
         </Col>
