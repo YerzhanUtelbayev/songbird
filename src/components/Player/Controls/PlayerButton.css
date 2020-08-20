@@ -1,0 +1,24 @@
+.Player-button {
+  height: 4.2rem;
+  width: 4.2rem;
+  margin-bottom: 15px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  transition: 0.5s;
+}
+.Player-button:focus {
+  outline: none;
+}
+.Player-button:hover {
+  cursor: pointer;
+}
+
+.Player-button:hover svg {
+  color: greenyellow;
+}
+
+.Player-button svg {
+  font-size: 4em;
+  color: white;
+}
