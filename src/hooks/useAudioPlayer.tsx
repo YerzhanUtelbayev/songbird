@@ -50,12 +50,19 @@ const useAudioPlayer = (): UseAudioPlayerHook => {
       setCurTime(audio.currentTime);
     };
 
+    const handlePlayEnding = () => {
+      setPlaying(false);
+      audio.currentTime = 0;
+    };
+
     audio.addEventListener('loadeddata', setAudioData);
     audio.addEventListener('timeupdate', setAudioTime);
+    audio.addEventListener('ended', handlePlayEnding);
 
     return () => {
       audio.removeEventListener('loadeddata', setAudioData);
       audio.removeEventListener('timeupdate', setAudioTime);
+      audio.removeEventListener('ended', handlePlayEnding);
     };
   }, []);
 
