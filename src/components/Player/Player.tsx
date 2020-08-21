@@ -20,9 +20,10 @@ const Player: FunctionComponent<Props> = ({ audio }) => {
   useEffect(() => {
     const audioEl = audioRef.current;
     if (audioEl && audioEl.src !== audio) {
+      setPlaying(false);
       audioEl.src = audio;
     }
-  }, [audio, audioRef]);
+  }, [audio, audioRef, setPlaying]);
 
   return (
     <div className="Player">
