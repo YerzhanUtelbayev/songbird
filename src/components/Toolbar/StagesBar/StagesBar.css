@@ -9,8 +9,8 @@
 .StagesBar-item {
   flex-grow: 1;
   text-align: center;
-  padding: 8px 12px
+  padding: 8px 12px;
 }
-.StagesBar-active{
-  background-color: #00BC8C;
+.StagesBar-active {
+  background-color: #00bc8c;
 }
