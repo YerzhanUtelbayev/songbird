@@ -42,7 +42,7 @@ module.exports = function getConfig(_env, argv) {
           ],
         },
         {
-          test: /\.(png|jpg|gif)$/i,
+          test: /\.(png|jpe?g|gif|webp)$/i,
           use: {
             loader: 'url-loader',
             options: {
@@ -66,6 +66,7 @@ module.exports = function getConfig(_env, argv) {
           filename: 'assets/css/[name].[contenthash:8].css',
           chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
         }),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Ignore all locale files of moment.js
       new webpack.ProgressPlugin(),
       new HTMLWebpackPlugin({
         template: path.resolve(__dirname, 'public/index.html'),
