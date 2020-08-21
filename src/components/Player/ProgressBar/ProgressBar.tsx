@@ -74,7 +74,6 @@ const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate
 
   return (
     <div className="ProgressBar">
-      <span className="ProgressBar-time">{getFormattedDuration(curTime)}</span>
       <div
         ref={progressBarRef}
         className="ProgressBar-progress"
@@ -88,7 +87,10 @@ const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate
           style={{ left: `${curPercentage}%`, transition: isDragged ? 'none' : '.2s linear' }}
         />
       </div>
-      <span className="ProgressBar-time">{getFormattedDuration(duration)}</span>
+      <div className="ProgressBar-time-box">
+        <span className="ProgressBar-time">{getFormattedDuration(curTime)}</span>
+        <span className="ProgressBar-time">{getFormattedDuration(duration)}</span>
+      </div>
     </div>
   );
 };

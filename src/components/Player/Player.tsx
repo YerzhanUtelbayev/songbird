@@ -27,7 +27,7 @@ const Player: FunctionComponent<Props> = ({ audio }) => {
         {' '}
         element.
       </audio>
-      <div className="Player-controls">
+      <div className="Player-controls d-flex flex-row align-items-center">
         {playing ? (
           <Pause handleClick={() => setPlaying(false)} />
         ) : (

@@ -1,20 +1,24 @@
 .ProgressBar {
   user-select: none;
   width: 100%;
-  display: flex;
   align-items: center;
 }
 
+.ProgressBar-time-box {
+  display: flex;
+  justify-content: space-between;
+}
+
 .ProgressBar-time {
-  font-size: 16px;
+  font-size: 11px;
 }
 
 .ProgressBar-progress {
   position: relative;
   flex: 1;
   border-radius: 5px;
-  margin: 0 20px;
-  height: 10px;
+  margin: 5px;
+  height: 4px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -28,5 +32,5 @@
   border: 1.5px solid grey;
   border-radius: 50%;
   background-color: grey;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -40%);
 }
