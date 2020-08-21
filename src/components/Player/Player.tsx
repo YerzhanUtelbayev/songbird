@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 
 import './Player.css';
 
@@ -17,10 +17,16 @@ const Player: FunctionComponent<Props> = ({ audio }) => {
     audioRef, currentTime, duration, playing, setPlaying, setClickedTime,
   } = useAudioPlayer();
 
+  useEffect(() => {
+    const audioEl = audioRef.current;
+    if (audioEl && audioEl.src !== audio) {
+      audioEl.src = audio;
+    }
+  }, [audio, audioRef]);
+
   return (
     <div className="Player">
       <audio ref={audioRef}>
-        <source src={audio} />
         Your browser does not support the
         {' '}
         <code>audio</code>
