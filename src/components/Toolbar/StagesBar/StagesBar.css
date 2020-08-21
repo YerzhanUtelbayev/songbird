@@ -1,0 +1,16 @@
+.StagesBar {
+  display: flex;
+  justify-content: stretch;
+  width: 100%;
+  background-color: #008966;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.StagesBar-item {
+  flex-grow: 1;
+  text-align: center;
+  padding: 8px 12px
+}
+.StagesBar-active{
+  background-color: #00BC8C;
+}

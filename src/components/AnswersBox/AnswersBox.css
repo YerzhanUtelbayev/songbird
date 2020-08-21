@@ -1,9 +1,11 @@
 .AnswersBox-container {
   background-color: #303030;
-  border-radius: 0.25rem;
 }
 .AnswersBox-listItem {
-  background-color: #303030;
+  background-color: inherit;
+}
+.AnswersBox-listItem:not(:last-child) {
+  border-bottom: 1px solid #444444;
 }
 .AnswersBox-listItem:hover {
   cursor: pointer;

@@ -9,6 +9,7 @@ import { setCorrectAnswerId, proceedToNextStage } from '../../store/actions/game
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import AnswersBox from '../../components/AnswersBox/AnswersBox';
 import BirdInfo from '../../components/BirdInfo/BirdInfo';
+import './Main.css';
 
 const Main: FunctionComponent<PropsFromRedux> = ({
   birdsList,
@@ -62,17 +63,21 @@ const Main: FunctionComponent<PropsFromRedux> = ({
       )}
       <Row className="my-5">
         <Col sm={12} md={6}>
-          <AnswersBox stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
+          <div className="Main-content-block rounded">
+            <AnswersBox stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
+          </div>
         </Col>
         <Col sm={12} md={6}>
-          {shownBirdIndex || shownBirdIndex === 0 ? (
-            <BirdInfo birdData={birdsList[activeStage - 1][shownBirdIndex]} />
-          ) : (
-            <>
-              <p>Послушайте плеер</p>
-              <p>Выберите птицу из списка</p>
-            </>
-          )}
+          <div className="Main-content-block Main-height-adjusted p-3 rounded">
+            {shownBirdIndex || shownBirdIndex === 0 ? (
+              <BirdInfo birdData={birdsList[activeStage - 1][shownBirdIndex]} />
+            ) : (
+              <>
+                <p>Послушайте плеер</p>
+                <p>Выберите птицу из списка</p>
+              </>
+            )}
+          </div>
         </Col>
       </Row>
       <div>

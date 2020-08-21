@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ImageBox: FunctionComponent<Props> = ({ image, title }) => (
-  <div className="ImageBox-container">
+  <div className="ImageBox-container mr-3">
     <CardImg src={image} alt={title} className="ImageBox-image" />
   </div>
 );

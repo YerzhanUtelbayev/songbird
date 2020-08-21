@@ -1,0 +1,7 @@
+.Main-content-block {
+  border: 1px solid #444444;
+  background-color: #303030;
+}
+.Main-height-adjusted {
+  min-height: 100%;
+}

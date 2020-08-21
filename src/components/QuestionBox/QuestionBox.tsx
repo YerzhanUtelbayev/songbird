@@ -4,6 +4,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../store/configureStore';
 import BirdCard from '../UI/BirdCard/BirdCard';
 import BirdDefaultImage from '../../assets/images/birds.webp';
+import './QuestionBox.css';
 
 interface Props extends PropsFromRedux {
   image: string;
@@ -14,11 +15,13 @@ interface Props extends PropsFromRedux {
 const QuestionBox: FunctionComponent<Props> = ({
   image, audio, title, hasAnsweredCorrectly,
 }) => (
-  <BirdCard
-    image={hasAnsweredCorrectly ? image : BirdDefaultImage}
-    audio={audio}
-    title={hasAnsweredCorrectly ? title : '******'}
-  />
+  <div className="QuestionBox p-4 rounded">
+    <BirdCard
+      image={hasAnsweredCorrectly ? image : BirdDefaultImage}
+      audio={audio}
+      title={hasAnsweredCorrectly ? title : '******'}
+    />
+  </div>
 );
 
 const mapStateToProps = (state: RootState) => ({

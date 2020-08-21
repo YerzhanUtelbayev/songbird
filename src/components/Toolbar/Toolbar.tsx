@@ -4,7 +4,7 @@ import ScoreIndicator from './ScoreIndicator/ScoreIndicator';
 import StagesBar from './StagesBar/StagesBar';
 
 const Toolbar: FunctionComponent = () => (
-  <header>
+  <header className="mb-4">
     <Container>
       <Navbar dark>
         <NavbarBrand className="mr-auto text-white">
@@ -13,7 +13,7 @@ const Toolbar: FunctionComponent = () => (
         </NavbarBrand>
         <ScoreIndicator />
       </Navbar>
-      <Navbar color="success" light>
+      <Navbar light className="p-0">
         <StagesBar />
       </Navbar>
     </Container>

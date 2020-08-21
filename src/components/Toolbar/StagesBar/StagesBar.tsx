@@ -4,17 +4,19 @@ import { Nav, NavItem, NavbarText } from 'reactstrap';
 
 import { RootState } from '../../../store/configureStore';
 import stageTitles from '../../../utilities/stageTitles';
+import './StagesBar.css';
 
 const StagesBar: FunctionComponent<PropsFromRedux> = ({ activeStage }) => {
   const stages = stageTitles;
 
   return (
-    <Nav>
+    <Nav className="StagesBar">
       {stages.map((stage, index) => {
-        const stylesClass = index + 1 === activeStage ? 'active' : '';
+        const stylesClass = index + 1 === activeStage ? 'StagesBar-item StagesBar-active' : 'StagesBar-item';
+
         return (
           <NavItem key={stage} className={stylesClass}>
-            <NavbarText className="text-white">{stage}</NavbarText>
+            <NavbarText className="text-white p-0">{stage}</NavbarText>
           </NavItem>
         );
       })}
