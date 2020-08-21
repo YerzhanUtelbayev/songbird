@@ -33,7 +33,7 @@ const useAudioPlayer = (): UseAudioPlayerHook => {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (clickedTime && clickedTime !== currentTime && currentTime !== duration) {
+    if (clickedTime && clickedTime !== currentTime) {
       audio.currentTime = clickedTime;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
