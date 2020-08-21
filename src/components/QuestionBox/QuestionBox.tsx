@@ -1,23 +1,32 @@
 import React, { FunctionComponent } from 'react';
-import { Card, CardBody, CardTitle } from 'reactstrap';
+import { connect, ConnectedProps } from 'react-redux';
 
-import ImageBox from '../UI/ImageBox/ImageBox';
-import Player from '../Player/Player';
+import { RootState } from '../../store/configureStore';
+import BirdCard from '../UI/BirdCard/BirdCard';
+import BirdDefaultImage from '../../assets/images/birds.webp';
 
-interface Props {
+interface Props extends PropsFromRedux {
   image: string;
   audio: string;
   title: string;
 }
 
-const QuestionBox: FunctionComponent<Props> = ({ image, audio, title }) => (
-  <Card className="d-flex flex-row">
-    <ImageBox image={image} title={title} />
-    <CardBody>
-      <CardTitle>{title}</CardTitle>
-      <Player audio={audio} />
-    </CardBody>
-  </Card>
+const QuestionBox: FunctionComponent<Props> = ({
+  image, audio, title, hasAnsweredCorrectly,
+}) => (
+  <BirdCard
+    image={hasAnsweredCorrectly ? image : BirdDefaultImage}
+    audio={audio}
+    title={hasAnsweredCorrectly ? title : '******'}
+  />
 );
 
-export default QuestionBox;
+const mapStateToProps = (state: RootState) => ({
+  hasAnsweredCorrectly: state.game.hasAnsweredCorrectly,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(QuestionBox);
