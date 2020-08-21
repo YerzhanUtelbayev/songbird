@@ -1,3 +1,7 @@
 .BirdCard-box {
   background-color: #303030;
 }
+
+.BirdCard {
+  background-color: inherit;
+}
