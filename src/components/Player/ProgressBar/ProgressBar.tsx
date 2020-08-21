@@ -18,8 +18,8 @@ const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const getFormattedDuration = (durationValue: number): string => {
-    const momentDuration = moment.duration(durationValue, 'seconds').seconds();
-    return moment(momentDuration, 'seconds').format('mm:ss');
+    const formatted = moment.utc(durationValue * 1000).format('mm:ss');
+    return formatted;
   };
 
   const getClickedTime = (pageX: number): number => {
