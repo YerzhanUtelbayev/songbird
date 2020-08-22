@@ -1,16 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import { Container, Navbar, NavbarBrand } from 'reactstrap';
+import { Container, Navbar } from 'reactstrap';
 import ScoreIndicator from './ScoreIndicator/ScoreIndicator';
 import StagesBar from './StagesBar/StagesBar';
+import Logo from '../UI/Logo/Logo';
 
 const Toolbar: FunctionComponent = () => (
   <header className="mb-4">
     <Container>
       <Navbar dark>
-        <NavbarBrand className="mr-auto text-white">
-          Song
-          <span className="text-success">bird</span>
-        </NavbarBrand>
+        <Logo />
         <ScoreIndicator />
       </Navbar>
       <Navbar light className="p-0">
