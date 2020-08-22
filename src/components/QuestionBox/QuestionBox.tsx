@@ -5,6 +5,7 @@ import { RootState } from '../../store/configureStore';
 import BirdCard from '../UI/BirdCard/BirdCard';
 import BirdDefaultImage from '../../assets/images/birds.webp';
 import './QuestionBox.css';
+import { PLAYER } from '../../utilities/constants';
 
 interface Props extends PropsFromRedux {
   image: string;
@@ -20,6 +21,7 @@ const QuestionBox: FunctionComponent<Props> = ({
       image={hasAnsweredCorrectly ? image : BirdDefaultImage}
       audio={audio}
       title={hasAnsweredCorrectly ? title : '******'}
+      parentType={PLAYER.QUESTION_BLOCK}
     />
   </div>
 );

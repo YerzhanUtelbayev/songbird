@@ -11,13 +11,18 @@ interface Props {
   image?: string;
   audio: string;
   title: string;
+  parentType: string;
   subtitle?: string;
   cardText?: string;
-  className?: string;
 }
 
 const BirdCard: FunctionComponent<Props> = ({
-  image, audio, title, subtitle, cardText,
+  image,
+  audio,
+  title,
+  subtitle,
+  cardText,
+  parentType,
 }) => (
   <div className="BirdCard-box">
     <Card className="BirdCard d-flex flex-row border-0">
@@ -25,7 +30,7 @@ const BirdCard: FunctionComponent<Props> = ({
       <CardBody className="p-2">
         <CardTitle className="h3 ml-3">{title}</CardTitle>
         {subtitle && <CardSubtitle className="ml-3">{subtitle}</CardSubtitle>}
-        <Player audio={audio} />
+        <Player audio={audio} parentType={parentType} />
       </CardBody>
     </Card>
     {cardText && <CardText>{cardText}</CardText>}
