@@ -125,6 +125,7 @@ module.exports = function getConfig(_env, argv) {
       runtimeChunk: 'single',
     },
     devServer: {
+      contentBase: path.join(__dirname, 'public'),
       compress: true,
       historyApiFallback: true,
       open: true,
