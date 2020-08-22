@@ -6,6 +6,8 @@ import {
   HANDLE_CORRECT_ANSWER,
   HANDLE_INCORRECT_ANSWER,
   RESTART_GAME,
+  SET_PLAYING_COMPONENT,
+  RESET_PLAYING_COMPONENT,
 } from '../types/actionTypes';
 import { GameActionTypes } from '../actions/gameActions';
 import { MAX_STAGE_SCORE } from '../../utilities/constants';
@@ -29,6 +31,7 @@ export interface IGameSate {
   stageAttempts: number;
   hasAnsweredCorrectly: boolean;
   isGameOver: boolean;
+  playingComponentType: string | null;
 }
 
 const initialState: IGameSate = {
@@ -39,6 +42,7 @@ const initialState: IGameSate = {
   stageAttempts: 0,
   hasAnsweredCorrectly: false,
   isGameOver: false,
+  playingComponentType: null,
 };
 
 export default (state = initialState, action: GameActionTypes): IGameSate => {
@@ -67,6 +71,11 @@ export default (state = initialState, action: GameActionTypes): IGameSate => {
 
     case RESTART_GAME:
       return { ...initialState };
+
+    case SET_PLAYING_COMPONENT:
+      return { ...state, playingComponentType: action.payload };
+    case RESET_PLAYING_COMPONENT:
+      return { ...state, playingComponentType: null };
 
     default:
       return state;

@@ -4,6 +4,8 @@ import {
   HANDLE_CORRECT_ANSWER,
   HANDLE_INCORRECT_ANSWER,
   RESTART_GAME,
+  SET_PLAYING_COMPONENT,
+  RESET_PLAYING_COMPONENT,
 } from '../types/actionTypes';
 
 interface SetCorrectAnswerIdAction {
@@ -27,12 +29,23 @@ interface RestartGame {
   type: typeof RESTART_GAME;
 }
 
+interface SetPlayingComponent {
+  type: typeof SET_PLAYING_COMPONENT;
+  payload: string;
+}
+
+interface ResetPlayingComponent {
+  type: typeof RESET_PLAYING_COMPONENT;
+}
+
 export type GameActionTypes =
   | SetCorrectAnswerIdAction
   | ProceedToNextStageAction
   | HandleCorrectAnswer
   | HandleIncorrectAnswer
-  | RestartGame;
+  | RestartGame
+  | SetPlayingComponent
+  | ResetPlayingComponent;
 
 export const setCorrectAnswerId = (answerId: number): GameActionTypes => ({
   type: SET_CORRECT_ANSWER_ID,
@@ -53,4 +66,13 @@ export const handleIncorrectAnswer = (): HandleIncorrectAnswer => ({
 
 export const restartGame = (): RestartGame => ({
   type: RESTART_GAME,
+});
+
+export const setPlayingComponent = (componentType: string): SetPlayingComponent => ({
+  type: SET_PLAYING_COMPONENT,
+  payload: componentType,
+});
+
+export const resetPlayingComponent = (): ResetPlayingComponent => ({
+  type: RESET_PLAYING_COMPONENT,
 });
