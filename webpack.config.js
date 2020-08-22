@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = function getConfig(_env, argv) {
   const isProduction = argv.mode === 'production';
@@ -36,10 +37,7 @@ module.exports = function getConfig(_env, argv) {
         },
         {
           test: /\.css$/,
-          use: [
-            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-            'css-loader',
-          ],
+          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader'],
         },
         {
           test: /\.(png|jpe?g|gif|webp)$/i,
@@ -61,10 +59,22 @@ module.exports = function getConfig(_env, argv) {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     plugins: [
-      isProduction
-        && new MiniCssExtractPlugin({
+      isProduction &&
+        new MiniCssExtractPlugin({
           filename: 'assets/css/[name].[contenthash:8].css',
           chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
+        }),
+      isProduction &&
+        new CopyPlugin({
+          patterns: [
+            {
+              from: 'public/',
+              to: 'dist/',
+              globOptions: {
+                ignore: ['*.html'],
+              },
+            },
+          ],
         }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Ignore all locale files of moment.js
       new webpack.ProgressPlugin(),
@@ -73,9 +83,7 @@ module.exports = function getConfig(_env, argv) {
         inject: true,
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(
-          isProduction ? 'production' : 'development',
-        ),
+        'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
       }),
       new ForkTsCheckerWebpackPlugin({
         async: false,
@@ -110,9 +118,7 @@ module.exports = function getConfig(_env, argv) {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
             name(module, chunks, cacheGroupKey) {
-              const packageName = module.context.match(
-                /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-              )[1];
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
               return `${cacheGroupKey}.${packageName.replace('@', '')}`;
             },
           },
