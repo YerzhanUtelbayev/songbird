@@ -6,6 +6,9 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+const PORT = process.env.PORT || 8080;
 
 module.exports = function getConfig(_env, argv) {
   const isProduction = argv.mode === 'production';
@@ -82,6 +85,7 @@ module.exports = function getConfig(_env, argv) {
         template: path.resolve(__dirname, 'public/index.html'),
         inject: true,
       }),
+      isDevelopment && new ReactRefreshWebpackPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
       }),
@@ -132,11 +136,12 @@ module.exports = function getConfig(_env, argv) {
     },
     devServer: {
       contentBase: path.join(__dirname, 'public'),
+      host: 'localhost',
       compress: true,
       historyApiFallback: true,
       open: true,
       overlay: true,
-      port: 8080,
+      port: PORT,
       hot: true,
     },
   };
