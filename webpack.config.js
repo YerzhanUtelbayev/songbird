@@ -40,7 +40,11 @@ module.exports = function getConfig(_env, argv) {
         },
         {
           test: /\.css$/,
-          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader'],
+          use: [
+            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            isProduction && 'postcss-loader',
+          ],
         },
         {
           test: /\.(png|jpe?g|gif|webp)$/i,
@@ -59,10 +63,10 @@ module.exports = function getConfig(_env, argv) {
               loader: 'file-loader',
               options: {
                 name: '[name].[ext]',
-                outputPath: 'static/fonts/'
-              }
-            }
-          ]
+                outputPath: 'static/fonts/',
+              },
+            },
+          ],
         },
         {
           test: /\.svg$/,
@@ -131,6 +135,12 @@ module.exports = function getConfig(_env, argv) {
         maxInitialRequests: 20,
         maxAsyncRequests: 20,
         cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true,
+          },
           vendors: {
             test: /[\\/]node_modules[\\/]/,
             name(module, chunks, cacheGroupKey) {
