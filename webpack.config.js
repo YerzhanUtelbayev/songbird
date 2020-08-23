@@ -53,6 +53,18 @@ module.exports = function getConfig(_env, argv) {
           },
         },
         {
+          test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'static/fonts/'
+              }
+            }
+          ]
+        },
+        {
           test: /\.svg$/,
           use: ['@svgr/webpack'],
         },
