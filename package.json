@@ -13,8 +13,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack --mode production",
-    "start": "webpack-dev-server --mode development",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
+    "dev": "webpack-dev-server --config webpack.config.development.js",
     "prettier-format": "prettier --config .prettierrc src/**/*{ts,tsx,js,jsx,json,css} --write",
     "lint:eslint": "eslint --ext .ts,.js,.tsx,.jsx src/",
     "lint:eslint:fix": "eslint --ext .ts,.js,.tsx,.jsx --fix src/"
