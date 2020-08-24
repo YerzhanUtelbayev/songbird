@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, {
-  useState, FunctionComponent, useEffect, useRef,
+  useState, useEffect, useRef, FunctionComponent,
 } from 'react';
-import moment from 'moment';
 
 import './ProgressBar.css';
 
@@ -18,8 +17,12 @@ const ProgressBar: FunctionComponent<Props> = ({ duration, curTime, onTimeUpdate
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const getFormattedDuration = (durationValue: number): string => {
-    const formatted = moment.utc(durationValue * 1000).format('mm:ss');
-    return formatted;
+    const minutes = Math.floor(durationValue / 60);
+    const seconds = `0${Math.floor(durationValue % 60)}`;
+    const secondsFormatted = seconds.slice(-2);
+    const minutesFormatted = minutes < 10 ? `0${minutes}` : minutes.toString();
+    const result = `${minutesFormatted}:${secondsFormatted}`;
+    return result;
   };
 
   const getClickedTime = (pageX: number): number => {

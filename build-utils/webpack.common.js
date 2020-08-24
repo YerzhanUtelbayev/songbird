@@ -60,7 +60,6 @@ const config = {
     ],
   },
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.ProgressPlugin(),
     new HTMLWebpackPlugin({
       template: `${commonPaths.publicPath}/index.html`,
