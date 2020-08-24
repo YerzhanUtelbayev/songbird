@@ -10,7 +10,7 @@ import {
 
 interface SetCorrectAnswerIdAction {
   type: typeof SET_CORRECT_ANSWER_ID;
-  payload: number;
+  payload: string;
 }
 
 interface ProceedToNextStageAction {
@@ -47,7 +47,7 @@ export type GameActionTypes =
   | SetPlayingComponent
   | ResetPlayingComponent;
 
-export const setCorrectAnswerId = (answerId: number): GameActionTypes => ({
+export const setCorrectAnswerId = (answerId: string): GameActionTypes => ({
   type: SET_CORRECT_ANSWER_ID,
   payload: answerId,
 });

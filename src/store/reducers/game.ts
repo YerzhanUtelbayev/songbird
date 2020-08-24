@@ -13,7 +13,7 @@ import { GameActionTypes } from '../actions/gameActions';
 import { MAX_STAGE_SCORE } from '../../utilities/constants';
 
 export interface IBirdData {
-  id: number;
+  id: string;
   name: string;
   species: string;
   description: string;
@@ -27,7 +27,7 @@ export interface IGameSate {
   birdsList: IBirdsList;
   activeStage: number;
   score: number;
-  correctAnswerId: number | null;
+  correctAnswerId: string | null;
   stageAttempts: number;
   hasAnsweredCorrectly: boolean;
   isGameOver: boolean;

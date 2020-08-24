@@ -7,7 +7,7 @@ import { RootState } from '../../store/configureStore';
 import { IBirdData } from '../../store/reducers/game';
 import { setCorrectAnswerId, proceedToNextStage } from '../../store/actions/gameActions';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
-import AnswersBox from '../../components/AnswersBox/AnswersBox';
+import AnswersList from '../../components/AnswersBox/AnswersList';
 import BirdInfo from '../../components/BirdInfo/BirdInfo';
 import './Main.css';
 
@@ -64,7 +64,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
       <Row className="my-5">
         <Col sm={12} md={6}>
           <div className="Main-content-block rounded">
-            <AnswersBox stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
+            <AnswersList stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
           </div>
         </Col>
         <Col sm={12} md={6}>
@@ -102,7 +102,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onSetCorrectAnswer: (birdId: number) => dispatch(setCorrectAnswerId(birdId)),
+  onSetCorrectAnswer: (birdId: string) => dispatch(setCorrectAnswerId(birdId)),
   onProceedToNextStage: () => dispatch(proceedToNextStage()),
 });
 
