@@ -13,8 +13,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
-    "dev": "webpack-dev-server --config webpack.config.development.js",
+    "build": "cross-env NODE_ENV=production webpack -p --env.ENV=prod",
+    "build:analyze": "cross-env NODE_ENV=production webpack -p --env.ENV=prod --env.ADDONS=bundleanalyzer",
+    "dev": "webpack-dev-server --env.ENV=dev",
+    "dev:analyze": "webpack-dev-server --env.ENV=dev --env.ADDONS=bundleanalyzer",
     "prettier-format": "prettier --config .prettierrc src/**/*{ts,tsx,js,jsx,json,css} --write",
     "lint:eslint": "eslint --ext .ts,.js,.tsx,.jsx src/",
     "lint:eslint:fix": "eslint --ext .ts,.js,.tsx,.jsx --fix src/"
@@ -52,6 +54,7 @@
     "@typescript-eslint/parser": "^3.7.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "chalk": "^4.1.0",
     "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.0",
@@ -79,8 +82,10 @@
     "typescript": "^3.9.7",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.2"
   },
   "dependencies": {
     "moment": "^2.27.0",

@@ -1,22 +1,21 @@
-const path = require('path');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
-module.exports = {
-  mode: 'production',
-  devtool: 'source-map',
+const commonPaths = require('./common-paths');
+
+const config = {
   entry: {
     main: './src/index.tsx',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'assets/js/[name].[hash:8].js',
+    path: commonPaths.outputPath,
     publicPath: '/',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -31,14 +30,6 @@ module.exports = {
             envName: 'production',
           },
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: MiniCssExtractPlugin.loader },
-          { loader: 'css-loader', options: { importLoaders: 1, sourceMap: true } },
-          { loader: 'postcss-loader' },
-        ],
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i,
@@ -68,40 +59,18 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-  },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'assets/css/[name].[contenthash:8].css',
-      chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: 'public/',
-          to: 'dist/',
-          globOptions: {
-            ignore: ['*.html'],
-          },
-        },
-      ],
-    }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Ignore all locale files of moment.js
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.ProgressPlugin(),
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
+      template: `${commonPaths.publicPath}/index.html`,
       inject: true,
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
   ],
   optimization: {
-    minimize: true,
     minimizer: [
       new TerserWebpackPlugin({
         terserOptions: {
@@ -148,3 +117,4 @@ module.exports = {
     runtimeChunk: 'single',
   },
 };
+module.exports = config;
