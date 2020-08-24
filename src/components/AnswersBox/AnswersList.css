@@ -1,12 +1,12 @@
-.AnswersBox-container {
+.AnswersList-container {
   background-color: #303030;
 }
-.AnswersBox-listItem {
+.AnswersList-listItem {
   background-color: inherit;
 }
-.AnswersBox-listItem:not(:last-child) {
+.AnswersList-listItem:not(:last-child) {
   border-bottom: 1px solid #444444;
 }
-.AnswersBox-listItem:hover {
+.AnswersList-listItem:hover {
   cursor: pointer;
 }

@@ -1,0 +1,23 @@
+.AnswerVariant {
+  position: relative;
+  padding-left: 45px;
+}
+
+.AnswerVariant::before {
+  content: '';
+  position: absolute;
+  top: 38%;
+  left: 4%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #444;
+}
+
+.AnswerVariant-correct::before {
+  background-color: #00bc8c;
+}
+
+.AnswerVariant-incorrect::before {
+  background-color: #d62c1a;
+}

@@ -3,17 +3,18 @@ import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-import './AnswersBox.css';
+import './AnswersList.css';
 import { IBirdData } from '../../store/reducers/game';
 import { RootState } from '../../store/configureStore';
 import { handleCorrectAnswer, handleIncorrectAnswer } from '../../store/actions/gameActions';
+import AnswerVariant from './AnswerVariant/AnswerVariant';
 
 interface Props extends PropsFromRedux {
   stageBirdsList: IBirdData[];
   showBirdInfo: (index: number) => void;
 }
 
-const AnswersBox: FunctionComponent<Props> = ({
+const AnswersList: FunctionComponent<Props> = ({
   stageBirdsList,
   showBirdInfo,
   correctAnswerId,
@@ -21,7 +22,7 @@ const AnswersBox: FunctionComponent<Props> = ({
   onCorrectAnswer,
   onIncorrectAnswer,
 }) => {
-  const handleAnswer = (birdId: number, arrayIndex: number) => {
+  const handleAnswer = (birdId: string, arrayIndex: number) => {
     showBirdInfo(arrayIndex);
 
     if (hasAnsweredCorrectly) return;
@@ -34,16 +35,17 @@ const AnswersBox: FunctionComponent<Props> = ({
   };
 
   return (
-    <ListGroup className="AnswersBox-container">
+    <ListGroup className="AnswersList-container">
       {stageBirdsList && Array.isArray(stageBirdsList)
         ? stageBirdsList.map(({ id, name }, index) => (
-          <ListGroupItem
-            className="AnswersBox-listItem"
+          <AnswerVariant
             key={id}
-            onClick={() => handleAnswer(id, index)}
-          >
-            {name}
-          </ListGroupItem>
+            title={name}
+            handleClick={() => handleAnswer(id, index)}
+            isCorrect={id === correctAnswerId}
+            isStageOver={hasAnsweredCorrectly}
+            className="AnswersList-listItem"
+          />
         ))
         : null}
     </ListGroup>
@@ -64,4 +66,4 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-export default connector(AnswersBox);
+export default connector(AnswersList);
