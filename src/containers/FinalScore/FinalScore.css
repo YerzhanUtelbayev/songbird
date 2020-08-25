@@ -1,0 +1,10 @@
+.FinalScore {
+  background-color: #303030;
+}
+
+.FinalScore-button {
+  background-color: #00bc8c;
+}
+.FinalScore-button:hover {
+  background-color: #00efb2;
+}

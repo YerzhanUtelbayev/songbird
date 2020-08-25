@@ -15,3 +15,6 @@
 .Main-proceed-button.disabled {
   background-color: #444444;
 }
+.Main-proceed-button:hover:not(:disabled) {
+  background-color: #00efb2;
+}
