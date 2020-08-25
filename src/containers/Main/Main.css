@@ -5,3 +5,14 @@
 .Main-height-adjusted {
   min-height: 100%;
 }
+
+.Main-proceed-button {
+  background-color: #00bc8c;
+  font-size: inherit;
+  color: #fff;
+}
+.Main-proceed-button:disabled,
+.Main-proceed-button.disabled {
+  background-color: #444444;
+  /* opacity: 1; */
+}

@@ -82,7 +82,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
       </Row>
       <div>
         <Button
-          color="success"
+          className="Main-proceed-button"
           block
           onClick={handleProceedToNextLevel}
           disabled={!hasAnsweredCorrectly}
