@@ -10,6 +10,7 @@ import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import AnswersList from '../../components/AnswersBox/AnswersList';
 import BirdInfo from '../../components/BirdInfo/BirdInfo';
 import './Main.css';
+import Logger from '../../utilities/fancyLogger';
 
 const Main: FunctionComponent<PropsFromRedux> = ({
   birdsList,
@@ -48,9 +49,15 @@ const Main: FunctionComponent<PropsFromRedux> = ({
     if (correctAnswerId) {
       const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
       const correctAnswerData = currentStageData.find(({ id }) => id === correctAnswerId);
+      Logger.logBirdName(correctAnswerData);
       setQuestionedBird(correctAnswerData);
     }
   }, [correctAnswerId, birdsList, activeStage]);
+
+  useEffect(() => {
+    Logger.logTitle();
+    Logger.logIntro();
+  }, []);
 
   return (
     <>
