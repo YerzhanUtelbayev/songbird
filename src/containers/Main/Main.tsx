@@ -54,11 +54,6 @@ const Main: FunctionComponent<PropsFromRedux> = ({
     }
   }, [correctAnswerId, birdsList, activeStage]);
 
-  useEffect(() => {
-    Logger.logTitle();
-    Logger.logIntro();
-  }, []);
-
   return (
     <>
       {questionedBird && (
