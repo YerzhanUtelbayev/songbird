@@ -42,7 +42,6 @@ const config = {
       patterns: [
         {
           from: 'public/',
-          to: 'dist/',
           globOptions: {
             ignore: ['*.html'],
           },
