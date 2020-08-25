@@ -3,8 +3,10 @@ import { connect, ConnectedProps } from 'react-redux';
 import { NavbarText } from 'reactstrap';
 import { RootState } from '../../../store/configureStore';
 
+import './ScoreIndicator.css';
+
 const ScoreIndicator: FunctionComponent<PropsFromRedux> = ({ score }) => (
-  <NavbarText>
+  <NavbarText className="ScoreIndicator">
     {'Score: '}
     {score}
   </NavbarText>

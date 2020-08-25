@@ -7,7 +7,7 @@ import Logo from '../UI/Logo/Logo';
 const Toolbar: FunctionComponent = () => (
   <header className="mb-4">
     <Container>
-      <Navbar dark>
+      <Navbar>
         <Logo />
         <ScoreIndicator />
       </Navbar>
