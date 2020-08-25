@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 
 import './AnswersList.css';
 import { IBirdData } from '../../store/reducers/game';

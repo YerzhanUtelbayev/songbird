@@ -14,5 +14,4 @@
 .Main-proceed-button:disabled,
 .Main-proceed-button.disabled {
   background-color: #444444;
-  /* opacity: 1; */
 }

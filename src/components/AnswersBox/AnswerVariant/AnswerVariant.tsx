@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { ListGroupItem } from 'reactstrap';
 
 import './AnswerVariant.css';
