@@ -9,8 +9,6 @@ import Logger from './utilities/fancyLogger';
 
 const App: FunctionComponent<PropsFromRedux> = ({ isGameOver }) => {
   useEffect(() => {
-    console.log('rerender');
-    Logger.logTitle();
     Logger.logIntro();
   }, []);
   return <Layout>{!isGameOver ? <Main /> : <FinalScore />}</Layout>;

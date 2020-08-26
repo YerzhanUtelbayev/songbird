@@ -3,7 +3,7 @@ import { IBirdData } from '../store/reducers/game';
 const Logger = {
   bird: String.fromCodePoint(0x1f989),
   introduction:
-    'Hi there! I want to help build fast and accessible web experience used by people around the world. I am open for a frontend developer position. Head on over to https://www.linkedin.com/in/yerzhan-utelbayev/ to find out more about me',
+    'Hi there! I want to help build fast and accessible web experience used by people around the world. I am open for a junior frontend developer or intern position. Head on over to https://www.linkedin.com/in/yerzhan-utelbayev/ to find out more about me',
   styles: {
     answerTip: ['color: #fff', 'background: #0d47a1', 'padding: 5px', 'border-radius: 5px'],
     title: [
@@ -26,10 +26,8 @@ const Logger = {
       );
     }
   },
-  logTitle() {
+  logIntro(): void {
     console.log('%cSongbird', this.styles.title.join(';'));
-  },
-  logIntro() {
     console.log(`%c${this.introduction}`, this.styles.intro.join(';'));
   },
 };
