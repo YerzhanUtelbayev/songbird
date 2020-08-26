@@ -10,12 +10,13 @@ interface Props {
 
 const BirdInfo: FunctionComponent<Props> = ({ birdData }) => {
   const {
-    image, name, species, description, audio,
+    image, thumbnail, name, species, description, audio,
   } = birdData;
 
   return (
     <BirdCard
       image={image}
+      thumbnail={thumbnail}
       audio={audio}
       title={name}
       subtitle={species}

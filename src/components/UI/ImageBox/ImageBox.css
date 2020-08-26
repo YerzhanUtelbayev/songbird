@@ -1,12 +1,8 @@
 .ImageBox-container {
-  max-width: 200px;
-  max-height: 155px;
+  position: relative;
+  width: 200px;
+  height: 155px;
   border-radius: 10px;
   overflow: hidden;
-}
-
-.ImageBox-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background: rgba(0, 0, 0, 0.1);
 }

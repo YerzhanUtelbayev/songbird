@@ -8,7 +8,8 @@ import Player from '../../Player/Player';
 import './BirdCard.css';
 
 interface Props {
-  image?: string;
+  image: string;
+  thumbnail?: string;
   audio: string;
   title: string;
   parentType: string;
@@ -18,6 +19,7 @@ interface Props {
 
 const BirdCard: FunctionComponent<Props> = ({
   image,
+  thumbnail,
   audio,
   title,
   subtitle,
@@ -26,7 +28,7 @@ const BirdCard: FunctionComponent<Props> = ({
 }) => (
   <div className="BirdCard-box">
     <Card className="BirdCard d-flex flex-row border-0">
-      <ImageBox image={image} title={title} />
+      <ImageBox image={image} thumbnail={thumbnail} title={title} />
       <CardBody className="p-2">
         <CardTitle className="h3 ml-3">{title}</CardTitle>
         {subtitle && <CardSubtitle className="ml-3">{subtitle}</CardSubtitle>}

@@ -9,16 +9,22 @@ import { PLAYER } from '../../utilities/constants';
 
 interface Props extends PropsFromRedux {
   image: string;
+  thumbnail: string;
   audio: string;
   title: string;
 }
 
 const QuestionBox: FunctionComponent<Props> = ({
-  image, audio, title, hasAnsweredCorrectly,
+  image,
+  thumbnail,
+  audio,
+  title,
+  hasAnsweredCorrectly,
 }) => (
   <div className="QuestionBox p-4 rounded">
     <BirdCard
       image={hasAnsweredCorrectly ? image : BirdDefaultImage}
+      thumbnail={hasAnsweredCorrectly ? thumbnail : undefined}
       audio={audio}
       title={hasAnsweredCorrectly ? title : '******'}
       parentType={PLAYER.QUESTION_BLOCK}

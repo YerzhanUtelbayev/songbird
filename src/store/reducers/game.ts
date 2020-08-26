@@ -18,6 +18,7 @@ export interface IBirdData {
   species: string;
   description: string;
   image: string;
+  thumbnail: string;
   audio: string;
 }
 

@@ -59,6 +59,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
       {questionedBird && (
         <QuestionBox
           image={questionedBird.image}
+          thumbnail={questionedBird.thumbnail}
           title={questionedBird.name}
           audio={questionedBird.audio}
         />

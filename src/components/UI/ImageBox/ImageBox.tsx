@@ -1,16 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import { CardImg } from 'reactstrap';
 
 import './ImageBox.css';
+import Image from './Image';
 
 interface Props {
-  image?: string;
-  title?: string;
+  image: string;
+  title: string;
+  thumbnail?: string;
 }
 
-const ImageBox: FunctionComponent<Props> = ({ image, title }) => (
+const ImageBox: FunctionComponent<Props> = ({ image, title, thumbnail }) => (
   <div className="ImageBox-container mr-3">
-    <CardImg src={image} alt={title} className="ImageBox-image" />
+    <Image src={image} thumb={thumbnail} alt={title} />
   </div>
 );
 
