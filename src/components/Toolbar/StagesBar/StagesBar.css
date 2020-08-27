@@ -14,3 +14,15 @@
 .StagesBar-active {
   background-color: #00bc8c;
 }
+
+@media screen and (max-width: 992px) {
+  .StagesBar-item {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .StagesBar-item {
+    width: 50%;
+  }
+}

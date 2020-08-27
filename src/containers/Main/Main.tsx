@@ -64,7 +64,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
           audio={questionedBird.audio}
         />
       )}
-      <Row className="my-5">
+      <Row className="my-3 my-md-5">
         <Col sm={12} md={6}>
           <div className="Main-content-block rounded">
             <AnswersList stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
@@ -85,7 +85,7 @@ const Main: FunctionComponent<PropsFromRedux> = ({
       </Row>
       <div>
         <Button
-          className="Main-proceed-button"
+          className="Main-proceed-button mb-5"
           block
           onClick={handleProceedToNextLevel}
           disabled={!hasAnsweredCorrectly}

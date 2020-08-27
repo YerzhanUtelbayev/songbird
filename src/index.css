@@ -7,8 +7,14 @@
 
 body {
   font-family: 'Lato', Arial, 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 0.94rem;
+  font-size: 15px;
   line-height: 1.5;
   background-color: #222222;
   color: #fff;
+}
+
+@media screen and (max-width: 450px) {
+  body {
+    font-size: 14px;
+  }
 }

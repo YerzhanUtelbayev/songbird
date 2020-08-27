@@ -5,3 +5,10 @@
 .BirdCard {
   background-color: inherit;
 }
+
+@media screen and (max-width: 450px) {
+  .BirdCard {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
