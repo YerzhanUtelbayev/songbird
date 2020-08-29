@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useCallback } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
 
@@ -32,18 +32,18 @@ const Player: FunctionComponent<Props> = ({
     onSetParentType(parentType);
   };
 
-  const handlePause = () => {
+  const handlePause = useCallback(() => {
     onResetParentType();
     setPlaying(false);
-  };
+  }, [onResetParentType, setPlaying]);
 
   useEffect(() => {
     const audioEl = audioRef.current;
     if (audioEl && audioEl.src !== audio) {
-      setPlaying(false);
+      handlePause();
       audioEl.src = audio;
     }
-  }, [audio, audioRef, setPlaying]);
+  }, [audio, audioRef, handlePause]);
 
   useEffect(() => {
     if (playingComponentType !== parentType || !playingComponentType) {
