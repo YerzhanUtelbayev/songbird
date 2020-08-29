@@ -57,6 +57,13 @@ const config = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       },
+      {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        query: {
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
+      },
     ],
   },
   plugins: [
