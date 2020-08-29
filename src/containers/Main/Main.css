@@ -18,3 +18,13 @@
 .Main-proceed-button:hover:not(:disabled) {
   background-color: #00efb2;
 }
+
+@media screen and (max-width: 450px) {
+  .Main-button-wrapper-sticky {
+    position: sticky;
+    bottom: 0;
+  }
+  .Main-button-wrapper-sticky .Main-proceed-button {
+    background: rgba(0, 188, 140, 0.9);
+  }
+}

@@ -64,9 +64,9 @@ const Main: FunctionComponent<PropsFromRedux> = ({
           audio={questionedBird.audio}
         />
       )}
-      <Row className="my-3 my-md-5">
+      <Row className="my-3 my-md-4">
         <Col sm={12} md={6}>
-          <div className="Main-content-block rounded">
+          <div className="Main-content-block rounded mb-3 mb-md-0">
             <AnswersList stageBirdsList={birdsList[activeStage - 1]} showBirdInfo={showBirdInfo} />
           </div>
         </Col>
@@ -83,9 +83,9 @@ const Main: FunctionComponent<PropsFromRedux> = ({
           </div>
         </Col>
       </Row>
-      <div>
+      <div className={`pb-5 ${hasAnsweredCorrectly ? 'Main-button-wrapper-sticky' : ''}`}>
         <Button
-          className="Main-proceed-button mb-5"
+          className="Main-proceed-button"
           block
           onClick={handleProceedToNextLevel}
           disabled={!hasAnsweredCorrectly}
