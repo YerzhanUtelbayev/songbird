@@ -40,10 +40,16 @@ const Player: FunctionComponent<Props> = ({
   useEffect(() => {
     const audioEl = audioRef.current;
     if (audioEl && audioEl.src !== audio) {
-      handlePause();
       audioEl.src = audio;
     }
-  }, [audio, audioRef, handlePause]);
+  }, [audio, audioRef]);
+
+  useEffect(() => {
+    if (playing) {
+      handlePause();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audio, handlePause]);
 
   useEffect(() => {
     if (playingComponentType !== parentType || !playingComponentType) {
