@@ -10,3 +10,16 @@
 .AnswersList-listItem:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 450px) {
+  .AnswersList-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .AnswersList-listItem {
+    width: 50%;
+  }
+  .AnswersList-listItem:nth-child(5) {
+    border-bottom: none;
+  }
+}
