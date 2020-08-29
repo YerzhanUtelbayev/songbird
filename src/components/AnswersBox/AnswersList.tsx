@@ -27,11 +27,16 @@ const AnswersList: FunctionComponent<Props> = ({
 }) => {
   const [errorSoundAudio] = useState<HTMLAudioElement>(new Audio(errorSound));
   const [winSoundAudio] = useState<HTMLAudioElement>(new Audio(winSound));
+  const [answeredIndexesList, setAnsweredIndexes] = useState<number[]>([]);
 
   const handleAnswer = (birdId: string, arrayIndex: number) => {
     showBirdInfo(arrayIndex);
 
-    if (hasAnsweredCorrectly) return;
+    if (hasAnsweredCorrectly || answeredIndexesList.includes(arrayIndex)) {
+      return;
+    }
+
+    setAnsweredIndexes([...answeredIndexesList, arrayIndex]);
 
     if (birdId === correctAnswerId) {
       onCorrectAnswer();
@@ -43,6 +48,10 @@ const AnswersList: FunctionComponent<Props> = ({
       errorSoundAudio.play().catch(() => {});
     }
   };
+
+  useEffect(() => {
+    setAnsweredIndexes([]);
+  }, [correctAnswerId]);
 
   useEffect(() => {
     if (playingComponentType) {
