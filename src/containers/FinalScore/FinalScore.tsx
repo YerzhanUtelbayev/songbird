@@ -17,7 +17,22 @@ const FinalScore: FunctionComponent<PropsFromRedux> = ({ score, onRestartGame })
     <Jumbotron className="FinalScore">
       <div className="text-center">
         <p className="h1">Поздравляем!</p>
-        <p className="lead">{`Вы прошли викторину и набрали ${score} из ${MAX_OVERALL_SCORE} возможных баллов`}</p>
+        {score !== MAX_OVERALL_SCORE ? (
+          <p className="lead">{`Вы прошли викторину и набрали ${score} из ${MAX_OVERALL_SCORE} возможных баллов`}</p>
+        ) : (
+          <>
+            <p className="lead">
+              Вы прошли викторину и набрали максимально возможное количество баллов
+            </p>
+            <p>
+              Вот вам ссылка на бесплатную библиотеку книг по JS в подарок
+              {' '}
+              <a href="https://jsbooks.revolunet.com/" rel="noreferrer noopener" target="_blank">
+                JSbooks
+              </a>
+            </p>
+          </>
+        )}
         <hr className="mt-4 mb-5" />
         <Button className="FinalScore-button" block size="lg" onClick={handleGameRestart}>
           Попробовать ещё раз!
