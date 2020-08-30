@@ -4,12 +4,11 @@ import { Dispatch } from 'redux';
 import { ListGroup } from 'reactstrap';
 
 import './AnswersList.css';
-import errorSound from '../../assets/media/wrong.mp3';
-import winSound from '../../assets/media/correct.mp3';
 import { IBirdData } from '../../store/reducers/game';
 import { RootState } from '../../store/configureStore';
 import { handleCorrectAnswer, handleIncorrectAnswer } from '../../store/actions/gameActions';
 import AnswerVariant from './AnswerVariant/AnswerVariant';
+import useSounds from '../../hooks/useSounds';
 
 interface Props extends PropsFromRedux {
   stageBirdsList: IBirdData[];
@@ -23,11 +22,10 @@ const AnswersList: FunctionComponent<Props> = ({
   hasAnsweredCorrectly,
   onCorrectAnswer,
   onIncorrectAnswer,
-  playingComponentType,
 }) => {
-  const [errorSoundAudio] = useState<HTMLAudioElement>(new Audio(errorSound));
-  const [winSoundAudio] = useState<HTMLAudioElement>(new Audio(winSound));
   const [answeredIndexesList, setAnsweredIndexes] = useState<number[]>([]);
+
+  const { playErrorSound, playWinSound } = useSounds();
 
   const handleAnswer = (birdId: string, arrayIndex: number) => {
     showBirdInfo(arrayIndex);
@@ -40,30 +38,16 @@ const AnswersList: FunctionComponent<Props> = ({
 
     if (birdId === correctAnswerId) {
       onCorrectAnswer();
-      errorSoundAudio.pause();
-      winSoundAudio.play().catch(() => {});
+      playWinSound();
     } else {
       onIncorrectAnswer();
-      errorSoundAudio.currentTime = 0;
-      errorSoundAudio.play().catch(() => {});
+      playErrorSound();
     }
   };
 
   useEffect(() => {
     setAnsweredIndexes([]);
   }, [correctAnswerId]);
-
-  useEffect(() => {
-    if (playingComponentType) {
-      errorSoundAudio.loop = false;
-    } else {
-      errorSoundAudio.loop = true;
-    }
-
-    if (playingComponentType && !errorSoundAudio.paused) {
-      errorSoundAudio.pause();
-    }
-  }, [playingComponentType, errorSoundAudio]);
 
   return (
     <ListGroup className="AnswersList-container">
@@ -86,7 +70,6 @@ const AnswersList: FunctionComponent<Props> = ({
 const mapStateToProps = (state: RootState) => ({
   correctAnswerId: state.game.correctAnswerId,
   hasAnsweredCorrectly: state.game.hasAnsweredCorrectly,
-  playingComponentType: state.game.playingComponentType,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
