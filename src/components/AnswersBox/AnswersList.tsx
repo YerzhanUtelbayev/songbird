@@ -6,7 +6,11 @@ import { ListGroup } from 'reactstrap';
 import './AnswersList.css';
 import { IBirdData } from '../../store/reducers/game';
 import { RootState } from '../../store/configureStore';
-import { handleCorrectAnswer, handleIncorrectAnswer } from '../../store/actions/gameActions';
+import {
+  handleCorrectAnswer,
+  handleIncorrectAnswer,
+  resetPlayingComponent,
+} from '../../store/actions/gameActions';
 import AnswerVariant from './AnswerVariant/AnswerVariant';
 import useSounds from '../../hooks/useSounds';
 
@@ -22,6 +26,7 @@ const AnswersList: FunctionComponent<Props> = ({
   hasAnsweredCorrectly,
   onCorrectAnswer,
   onIncorrectAnswer,
+  onResetPlayingComponent,
 }) => {
   const [answeredIndexesList, setAnsweredIndexes] = useState<number[]>([]);
 
@@ -39,6 +44,7 @@ const AnswersList: FunctionComponent<Props> = ({
     if (birdId === correctAnswerId) {
       onCorrectAnswer();
       playWinSound();
+      onResetPlayingComponent();
     } else {
       onIncorrectAnswer();
       playErrorSound();
@@ -75,6 +81,7 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onCorrectAnswer: () => dispatch(handleCorrectAnswer()),
   onIncorrectAnswer: () => dispatch(handleIncorrectAnswer()),
+  onResetPlayingComponent: () => dispatch(resetPlayingComponent()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
