@@ -30,8 +30,8 @@ const BirdCard: FunctionComponent<Props> = ({
     <Card className="BirdCard d-flex flex-row border-0">
       <ImageBox image={image} thumbnail={thumbnail} title={title} />
       <CardBody className="p-2">
-        <CardTitle className="h3 ml-3">{title}</CardTitle>
-        {subtitle && <CardSubtitle className="ml-3">{subtitle}</CardSubtitle>}
+        <CardTitle className="BirdCard-title h3 ml-3">{title}</CardTitle>
+        {subtitle && <CardSubtitle className="BirdCard-title ml-3">{subtitle}</CardSubtitle>}
         <Player audio={audio} parentType={parentType} />
       </CardBody>
     </Card>

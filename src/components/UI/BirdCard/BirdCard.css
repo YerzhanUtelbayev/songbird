@@ -6,6 +6,11 @@
   background-color: inherit;
 }
 
+.BirdCard-title {
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #444444;
+}
+
 @media screen and (max-width: 450px) {
   .BirdCard {
     flex-wrap: wrap;
