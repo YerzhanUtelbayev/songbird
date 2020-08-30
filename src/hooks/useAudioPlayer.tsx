@@ -1,6 +1,9 @@
 import React, {
   useState, useLayoutEffect, useRef, SetStateAction, useEffect,
 } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { resetPlayingComponent } from '../store/actions/gameActions';
 
 interface UseAudioPlayerHook {
   audioRef: React.RefObject<HTMLAudioElement>;
@@ -17,6 +20,8 @@ const useAudioPlayer = (): UseAudioPlayerHook => {
   const [currentTime, setCurTime] = useState<number>(0);
   const [playing, setPlaying] = useState<boolean>(false);
   const [clickedTime, setClickedTime] = useState<number>(0);
+
+  const dispatch = useDispatch();
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -53,6 +58,7 @@ const useAudioPlayer = (): UseAudioPlayerHook => {
     const handlePlayEnding = () => {
       setPlaying(false);
       audio.currentTime = 0;
+      dispatch(resetPlayingComponent());
     };
 
     audio.addEventListener('loadeddata', setAudioData);
@@ -64,7 +70,7 @@ const useAudioPlayer = (): UseAudioPlayerHook => {
       audio.removeEventListener('timeupdate', setAudioTime);
       audio.removeEventListener('ended', handlePlayEnding);
     };
-  }, []);
+  }, [dispatch]);
 
   return {
     audioRef,
