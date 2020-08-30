@@ -12,6 +12,9 @@ const useSounds = (): UseSoundsHook => {
   const [errorSoundAudio] = useState<HTMLAudioElement>(new Audio(errorSound));
   const [winSoundAudio] = useState<HTMLAudioElement>(new Audio(winSound));
 
+  errorSoundAudio.volume = 0.3;
+  winSoundAudio.volume = 0.3;
+
   const playErrorSound = () => {
     errorSoundAudio.currentTime = 0;
     errorSoundAudio.play().catch(() => {});
