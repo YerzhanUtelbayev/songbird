@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import errorSound from '../assets/media/wrong.mp3';
 import winSound from '../assets/media/correct.mp3';
-import { RootState } from '../store/configureStore';
 
 interface UseSoundsHook {
   playErrorSound: () => void;
@@ -13,7 +11,6 @@ interface UseSoundsHook {
 const useSounds = (): UseSoundsHook => {
   const [errorSoundAudio] = useState<HTMLAudioElement>(new Audio(errorSound));
   const [winSoundAudio] = useState<HTMLAudioElement>(new Audio(winSound));
-  const playingComponentType = useSelector((state: RootState) => state.game.playingComponentType);
 
   const playErrorSound = () => {
     errorSoundAudio.currentTime = 0;
@@ -24,18 +21,6 @@ const useSounds = (): UseSoundsHook => {
     errorSoundAudio.pause();
     winSoundAudio.play().catch(() => {});
   };
-
-  useEffect(() => {
-    if (playingComponentType) {
-      errorSoundAudio.loop = false;
-    } else {
-      errorSoundAudio.loop = true;
-    }
-
-    if (playingComponentType && !errorSoundAudio.paused) {
-      errorSoundAudio.pause();
-    }
-  }, [playingComponentType, errorSoundAudio]);
 
   return { playErrorSound, playWinSound };
 };
