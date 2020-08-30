@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ImageBox: FunctionComponent<Props> = ({ image, title, thumbnail }) => (
-  <div className="ImageBox-container mr-3">
+  <div className="ImageBox-container mr-sm-3">
     <Image src={image} thumb={thumbnail} alt={title} />
   </div>
 );

@@ -16,4 +16,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .BirdCard-title {
+    text-align: center;
+  }
 }
