@@ -46,13 +46,13 @@ const Main: FunctionComponent<PropsFromRedux> = ({
   }, [activeStage, onSetCorrectAnswer, birdsList]);
 
   useEffect(() => {
-    if (correctAnswerId) {
+    if (correctAnswerId !== questionedBird?.id) {
       const currentStageData: IBirdData[] = [...birdsList[activeStage - 1]];
       const correctAnswerData = currentStageData.find(({ id }) => id === correctAnswerId);
       Logger.logBirdName(correctAnswerData);
       setQuestionedBird(correctAnswerData);
     }
-  }, [correctAnswerId, birdsList, activeStage]);
+  }, [correctAnswerId, activeStage, birdsList, questionedBird?.id]);
 
   return (
     <>
