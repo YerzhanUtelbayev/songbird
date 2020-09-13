@@ -1,39 +1,16 @@
 import mockData from '../../utilities/mockData.json';
 import stageTitles from '../../utilities/stageTitles';
+import { IBirdsList, IGameSate } from '../types/reducerTypes';
 import {
   SET_CORRECT_ANSWER_ID,
   PROCEED_TO_NEXT_STAGE,
-  HANDLE_CORRECT_ANSWER,
-  HANDLE_INCORRECT_ANSWER,
+  HANDLE_ANSWER,
   RESTART_GAME,
   SET_PLAYING_COMPONENT,
   RESET_PLAYING_COMPONENT,
 } from '../types/actionTypes';
 import { GameActionTypes } from '../actions/gameActions';
 import { MAX_STAGE_SCORE } from '../../utilities/constants';
-
-export interface IBirdData {
-  id: string;
-  name: string;
-  species: string;
-  description: string;
-  image: string;
-  thumbnail: string;
-  audio: string;
-}
-
-export type IBirdsList = IBirdData[][];
-
-export interface IGameSate {
-  birdsList: IBirdsList;
-  activeStage: number;
-  score: number;
-  correctAnswerId: string | null;
-  stageAttempts: number;
-  hasAnsweredCorrectly: boolean;
-  isGameOver: boolean;
-  playingComponentType: string | null;
-}
 
 const initialState: IGameSate = {
   birdsList: mockData as IBirdsList,
@@ -61,13 +38,14 @@ export default (state = initialState, action: GameActionTypes): IGameSate => {
         hasAnsweredCorrectly: false,
       };
 
-    case HANDLE_CORRECT_ANSWER:
-      return {
-        ...state,
-        score: state.score + (MAX_STAGE_SCORE - state.stageAttempts),
-        hasAnsweredCorrectly: true,
-      };
-    case HANDLE_INCORRECT_ANSWER:
+    case HANDLE_ANSWER:
+      if (state.correctAnswerId === action.payload) {
+        return {
+          ...state,
+          score: state.score + (MAX_STAGE_SCORE - state.stageAttempts),
+          hasAnsweredCorrectly: true,
+        };
+      }
       return { ...state, stageAttempts: state.stageAttempts + 1 };
 
     case RESTART_GAME:

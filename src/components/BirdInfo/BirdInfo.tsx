@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { IBirdData } from '../../store/reducers/game';
+import { IBirdData } from '../../store/types/reducerTypes';
 import BirdCard from '../UI/BirdCard/BirdCard';
 import { PLAYER } from '../../utilities/constants';
 

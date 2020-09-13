@@ -1,8 +1,8 @@
+import { IBirdData } from '../types/reducerTypes';
 import {
   SET_CORRECT_ANSWER_ID,
   PROCEED_TO_NEXT_STAGE,
-  HANDLE_CORRECT_ANSWER,
-  HANDLE_INCORRECT_ANSWER,
+  HANDLE_ANSWER,
   RESTART_GAME,
   SET_PLAYING_COMPONENT,
   RESET_PLAYING_COMPONENT,
@@ -10,19 +10,16 @@ import {
 
 interface SetCorrectAnswerIdAction {
   type: typeof SET_CORRECT_ANSWER_ID;
-  payload: string;
+  payload: IBirdData['id'];
 }
 
 interface ProceedToNextStageAction {
   type: typeof PROCEED_TO_NEXT_STAGE;
 }
 
-interface HandleCorrectAnswer {
-  type: typeof HANDLE_CORRECT_ANSWER;
-}
-
-interface HandleIncorrectAnswer {
-  type: typeof HANDLE_INCORRECT_ANSWER;
+interface HandleAnswerById {
+  type: typeof HANDLE_ANSWER;
+  payload: IBirdData['id'];
 }
 
 interface RestartGame {
@@ -41,13 +38,12 @@ interface ResetPlayingComponent {
 export type GameActionTypes =
   | SetCorrectAnswerIdAction
   | ProceedToNextStageAction
-  | HandleCorrectAnswer
-  | HandleIncorrectAnswer
+  | HandleAnswerById
   | RestartGame
   | SetPlayingComponent
   | ResetPlayingComponent;
 
-export const setCorrectAnswerId = (answerId: string): GameActionTypes => ({
+export const setCorrectAnswerId = (answerId: IBirdData['id']): GameActionTypes => ({
   type: SET_CORRECT_ANSWER_ID,
   payload: answerId,
 });
@@ -56,12 +52,9 @@ export const proceedToNextStage = (): GameActionTypes => ({
   type: PROCEED_TO_NEXT_STAGE,
 });
 
-export const handleCorrectAnswer = (): HandleCorrectAnswer => ({
-  type: HANDLE_CORRECT_ANSWER,
-});
-
-export const handleIncorrectAnswer = (): HandleIncorrectAnswer => ({
-  type: HANDLE_INCORRECT_ANSWER,
+export const handleAnswerById = (birdId: IBirdData['id']): HandleAnswerById => ({
+  type: HANDLE_ANSWER,
+  payload: birdId,
 });
 
 export const restartGame = (): RestartGame => ({

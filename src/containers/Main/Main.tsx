@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { Row, Col, Button } from 'reactstrap';
 
 import { RootState } from '../../store/configureStore';
-import { IBirdData } from '../../store/reducers/game';
+import { IBirdData } from '../../store/types/reducerTypes';
 import { setCorrectAnswerId, proceedToNextStage } from '../../store/actions/gameActions';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import AnswersList from '../../components/AnswersBox/AnswersList';

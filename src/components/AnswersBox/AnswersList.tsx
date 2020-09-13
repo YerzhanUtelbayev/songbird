@@ -4,13 +4,9 @@ import { Dispatch } from 'redux';
 import { ListGroup } from 'reactstrap';
 
 import './AnswersList.css';
-import { IBirdData } from '../../store/reducers/game';
+import { IBirdData } from '../../store/types/reducerTypes';
 import { RootState } from '../../store/configureStore';
-import {
-  handleCorrectAnswer,
-  handleIncorrectAnswer,
-  resetPlayingComponent,
-} from '../../store/actions/gameActions';
+import { handleAnswerById, resetPlayingComponent } from '../../store/actions/gameActions';
 import AnswerVariant from './AnswerVariant/AnswerVariant';
 import useSounds from '../../hooks/useSounds';
 
@@ -24,15 +20,14 @@ const AnswersList: FunctionComponent<Props> = ({
   showBirdInfo,
   correctAnswerId,
   hasAnsweredCorrectly,
-  onCorrectAnswer,
-  onIncorrectAnswer,
+  onAnswer,
   onResetPlayingComponent,
 }) => {
   const [answeredIndexesList, setAnsweredIndexes] = useState<number[]>([]);
 
   const { playErrorSound, playWinSound } = useSounds();
 
-  const handleAnswer = (birdId: string, arrayIndex: number) => {
+  const handleAnswer = (birdId: IBirdData['id'], arrayIndex: number) => {
     showBirdInfo(arrayIndex);
 
     if (hasAnsweredCorrectly || answeredIndexesList.includes(arrayIndex)) {
@@ -40,13 +35,12 @@ const AnswersList: FunctionComponent<Props> = ({
     }
 
     setAnsweredIndexes([...answeredIndexesList, arrayIndex]);
+    onAnswer(birdId);
 
     if (birdId === correctAnswerId) {
-      onCorrectAnswer();
       playWinSound();
       onResetPlayingComponent();
     } else {
-      onIncorrectAnswer();
       playErrorSound();
     }
   };
@@ -79,8 +73,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onCorrectAnswer: () => dispatch(handleCorrectAnswer()),
-  onIncorrectAnswer: () => dispatch(handleIncorrectAnswer()),
+  onAnswer: (birdId: IBirdData['id']) => dispatch(handleAnswerById(birdId)),
   onResetPlayingComponent: () => dispatch(resetPlayingComponent()),
 });
 

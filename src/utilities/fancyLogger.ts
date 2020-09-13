@@ -1,4 +1,4 @@
-import { IBirdData } from '../store/reducers/game';
+import { IBirdData } from '../store/types/reducerTypes';
 
 const Logger = {
   bird: String.fromCodePoint(0x1f989),
